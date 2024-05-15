@@ -1,7 +1,7 @@
 public class Item {
     private float preco;
     private float custo;
-    String nome;
+    private String nome;
 
     public Item(float preco, float custo, String nome){
         this.preco = preco;
