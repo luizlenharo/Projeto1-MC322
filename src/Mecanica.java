@@ -50,7 +50,7 @@ public class Mecanica {
         return true;
     }
 
-    public Cliente cadastrarCliente() {
+    public static Cliente cadastrarCliente() {
         /*
         Cria um novo cliente e adiciona ele na arraylist clientes
          */
@@ -68,7 +68,7 @@ public class Mecanica {
         return newCliente;
     }
 
-    public Produto cadatrarProduto() {
+    public static void cadastrarProduto() {
         /*
         Cria um novo produto e adiciona ele na arraylist produtos
          */
@@ -87,10 +87,9 @@ public class Mecanica {
 
         Produto newProduto = new Produto(preco, custo, nome);
         produtos.add(newProduto);
-        return newProduto;
     }
 
-    public Servico cadastrarServico() {
+    public static Servico cadastrarServico() {
         /*
         Cria um novo serviço e adiciona ele na arraylist serviços
          */
