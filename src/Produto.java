@@ -18,6 +18,14 @@ public class Produto extends Item{
         this.estoque = estoque;
     }
 
+    public TipoProduto getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoProduto tipo) {
+        this.tipo = tipo;
+    }
+
     /* Define como um objeto Produto deve ser printado */
     public String toString(){
         String out = " ";
