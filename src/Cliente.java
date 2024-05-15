@@ -35,6 +35,8 @@ public class Cliente {
     }
 
     public boolean fazerPedido(){
+        int i=0;
+        System.out.println("Selecione o produto:");
         return true;
     }
 }
