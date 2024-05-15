@@ -40,8 +40,14 @@ public class Mecanica {
         Mecanica.caixa = caixa;
     }
 
-    public void reporEstoque(Produto produto, int quantidade) {
-
+    public boolean reporEstoque(Produto produto, int quantidade) {
+        float custo = quantidade * produto.getCusto();
+        if (custo > caixa) {
+            return false;
+        }
+        setCaixa(caixa - custo);
+        produto.setEstoque(produto.getEstoque() + quantidade);
+        return true;
     }
 
     public Cliente cadastrarCliente() {
