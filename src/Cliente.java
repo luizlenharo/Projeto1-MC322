@@ -1,20 +1,20 @@
 import java.util.ArrayList;
 
 public class Cliente {
-    private int cpf;
+    private String cpf;
     private String nome;
     private Pedido pedidoAtual=null;
 
-    public Cliente(int cpf, String nome){
+    public Cliente(String cpf, String nome){
         this.cpf = cpf;
         this.nome = nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
