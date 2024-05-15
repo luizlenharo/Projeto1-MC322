@@ -2,12 +2,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Mecanica {
-    private static ArrayList<Cliente> clientes;
-    private static ArrayList<Produto> produtos;
-    private static ArrayList<Servico> servicos;
+    private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    private static ArrayList<Produto> produtos = new ArrayList<Produto>();
+    private static ArrayList<Servico> servicos = new ArrayList<Servico>();
     private static float caixa;
 
-    //Geters e Seters
 
     public static ArrayList<Cliente> getClientes() {
         return clientes;
@@ -41,11 +40,20 @@ public class Mecanica {
         Mecanica.caixa = caixa;
     }
 
-    public void reporEstoque(Produto produto, int quantidade) {
-
+    public boolean reporEstoque(Produto produto, int quantidade) {
+        float custo = quantidade * produto.getCusto();
+        if (custo > caixa) {
+            return false;
+        }
+        setCaixa(caixa - custo);
+        produto.setEstoque(produto.getEstoque() + quantidade);
+        return true;
     }
 
     public Cliente cadastrarCliente() {
+        /*
+        Cria um novo cliente e adiciona ele na arraylist clientes
+         */
         String nome, cpf;
         Scanner entrada = new Scanner(System.in);
         System.out.print("--- Cadastro de Cliente ---\n\n");
@@ -56,10 +64,14 @@ public class Mecanica {
         cpf = entrada.nextLine();
 
         Cliente newCliente = new Cliente(cpf, nome);
+        clientes.add(newCliente);
         return newCliente;
     }
 
     public Produto cadatrarProduto() {
+        /*
+        Cria um novo produto e adiciona ele na arraylist produtos
+         */
         String nome;
         float preco, custo;
         Scanner entrada = new Scanner(System.in);
@@ -74,10 +86,14 @@ public class Mecanica {
         custo = entrada.nextFloat();
 
         Produto newProduto = new Produto(preco, custo, nome);
+        produtos.add(newProduto);
         return newProduto;
     }
 
     public Servico cadastrarServico() {
+        /*
+        Cria um novo serviço e adiciona ele na arraylist serviços
+         */
         String nome, descricao;
         float preco, custo;
         Scanner entrada = new Scanner(System.in);
@@ -95,6 +111,7 @@ public class Mecanica {
         descricao = entrada.nextLine();
 
         Servico newServico = new Servico(preco, custo, nome, descricao);
+        servicos.add(newServico);
         return newServico;
     }
 }

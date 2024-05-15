@@ -3,12 +3,14 @@ public class Item {
     private float custo;
     private String nome;
 
+    /* Construtor da classe Item */
     public Item(float preco, float custo, String nome){
         this.preco = preco;
         this.custo = custo;
         this.nome = nome;
     }
 
+    /* Getters e Setter da classe */
     public float getPreco() {
         return preco;
     }
