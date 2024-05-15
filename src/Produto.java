@@ -1,9 +1,8 @@
 public class Produto extends Item{
-    private int estoque;
+    private int estoque=0;
 
-    public Produto(float preco, float custo, String nome, int estoque){
+    public Produto(float preco, float custo, String nome){
         super(preco, custo, nome);
-        this.estoque = estoque;
     }
 
     public int getEstoque() {
@@ -16,6 +15,7 @@ public class Produto extends Item{
 
     public String toString(){
         String out = " ";
+        out += "Nome: " + getNome() + ",Preço: " + getPreco() + ",Custo: " + getCusto() + ",Estoque: " + getEstoque();
         return out;
     }
 }

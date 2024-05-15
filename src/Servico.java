@@ -16,6 +16,7 @@ public class Servico extends Item{
 
     public String toString(){
         String out = " ";
+        out += "Nome: " + getNome() + ",Preço: " + getPreco() + ",Custo: " + getCusto();
         return out;
     }
 }
