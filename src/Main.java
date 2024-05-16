@@ -4,7 +4,7 @@ public class Main {
     public static void Menu() {
         int resposta;
         Scanner entrada = new Scanner(System.in);
-        System.out.print("--- Mecânica ---\n");
+        System.out.print("\n--- Mecânica ---\n");
         System.out.print("(1) Produtos\n(2) Serviços\n(3) Clientes\n" +
                 "(4) Novo Pedido\n\n(0) Sair\nSelecione: ");
         resposta = entrada.nextInt();
@@ -13,9 +13,9 @@ public class Main {
                 break;
             } else if (resposta == 1) {  //Produtos
                 while (true) {
-                    System.out.print("--- Produtos ---\n");
+                    System.out.print("\n--- Produtos ---\n");
                     for (int i = 0; i < Mecanica.getProdutos().size(); i++) {
-                        System.out.printf("(%d) %s",
+                        System.out.printf("(%d) %s\n",
                                 i + 1, Mecanica.getProdutos().get(i).getNome());
                     }
                     System.out.printf("(%d) Cadastrar produto\n\n(0) Voltar\nSelecione: ",
@@ -28,11 +28,11 @@ public class Main {
                     } else {  //Produto n
                         while (true) {
                             Produto produto = Mecanica.getProdutos().get(resposta - 1);
-                            System.out.printf("--- %s ---",
+                            System.out.printf("\n--- %s ---\n",
                                     produto.getNome());
                             System.out.printf("- Preço: %f\n- Custo: %f\n- Estoque: %d\n- Tipo: %s\n",
                                     produto.getPreco(), produto.getCusto(), produto.getEstoque(), produto.getTipo());
-                            System.out.print("(1) Repor estoque\n(2) Remover produto\n\n(0) Voltar\nSelecione:");
+                            System.out.print("(1) Repor estoque\n(2) Remover produto\n\n(0) Voltar\nSelecione: ");
                             resposta = entrada.nextInt();
                             if (resposta == 0) {
                                 break;
@@ -50,7 +50,7 @@ public class Main {
             } else if (resposta == 2) {  //Serviços
                 while (true) {
                     for (int i = 0; i < Mecanica.getServicos().size(); i++) {
-                        System.out.printf("(%d) %s",
+                        System.out.printf("(%d) %s\n",
                                 i + 1, Mecanica.getServicos().get(i).getNome());
                     }
                     System.out.printf("(%d) Cadastrar serviço\n\n(0) Voltar\nSelecione: ",
@@ -63,7 +63,7 @@ public class Main {
                     } else {  //Serviço n
                         while (true) {
                             Servico servico = Mecanica.getServicos().get(resposta - 1);
-                            System.out.printf("--- %s ---",
+                            System.out.printf("\n--- %s ---\n",
                                     servico.getNome());
                             System.out.printf("- Preço: %f\n- Custo: %f\n",
                                     servico.getPreco(), servico.getCusto());
@@ -80,7 +80,7 @@ public class Main {
             } else if (resposta == 3) {  //Clientes
                 while (true) {
                     for (int i = 0; i < Mecanica.getClientes().size(); i++) {
-                        System.out.printf("(%d) %s",
+                        System.out.printf("(%d) %s\n",
                                 i + 1, Mecanica.getClientes().get(i).getNome());
                     }
                     System.out.printf("(%d) Cadastrar cliente\n\n(0) Voltar\nSelecione: ",
@@ -93,7 +93,7 @@ public class Main {
                     } else {  //Cliente n
                         while (true) {
                             Cliente cliente = Mecanica.getClientes().get(resposta - 1);
-                            System.out.printf("--- %s ---",
+                            System.out.printf("\n--- %s ---\n",
                                     cliente.getNome());
                             System.out.printf("- CPF: %s\n- Pedido: colocar pedido!\n",
                                     cliente.getCpf());
@@ -110,7 +110,7 @@ public class Main {
             } else if (resposta == 4) {
                 while (true) {
                     for (int i = 0; i < Mecanica.getClientes().size(); i++) {
-                        System.out.printf("(%d) %s",
+                        System.out.printf("(%d) %s\n",
                                 i + 1, Mecanica.getClientes().get(i).getNome());
                     }
                     System.out.printf("\n\n(0) Voltar\nSelecione o cliente: ",
