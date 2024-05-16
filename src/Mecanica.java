@@ -100,10 +100,11 @@ public class Mecanica {
 
         Produto newProduto = new Produto(custo, nome, tipo);
         newProduto.setPreco(newProduto.calculaPreco());
+
         produtos.add(newProduto);
     }
 
-    public static Servico cadastrarServico() {
+    public static void cadastrarServico() {
         /*
         Cria um novo serviço e adiciona ele na arraylist serviços
          */
@@ -125,6 +126,7 @@ public class Mecanica {
 
         Servico newServico = new Servico(custo, nome, descricao);
         newServico.setPreco(newServico.calculaPreco());
-        return newServico;
+
+        servicos.add(newServico);
     }
 }

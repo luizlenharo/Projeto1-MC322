@@ -71,7 +71,7 @@ public class Cliente {
                 System.out.println("Selecione o serviço: ");
                 // Mostra os serviços disponíveis
                 for (i = 0; i < Mecanica.getServicos().size(); i++) {
-                    System.out.println("(" + (i + 1) + ") " + Mecanica.getProdutos().get(i).getNome());
+                    System.out.println("(" + (i + 1) + ") " + Mecanica.getServicos().get(i).getNome());
                 }
                 System.out.println("(0) Voltar");
                 Servico servico =  Mecanica.getServicos().get(scanner.nextInt() - 1);
@@ -80,7 +80,7 @@ public class Cliente {
             }
         }
 
-        System.out.printf("Pedido finalizado com os seguintes itens:");
+        System.out.println("Pedido finalizado com os seguintes itens:");
         System.out.println(pedidoAtual);
 
         return true;

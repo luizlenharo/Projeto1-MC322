@@ -64,6 +64,7 @@ public class Main {
             }
             System.out.printf("(%d) Cadastrar serviço\n\n(0) Voltar\nSelecione: ",
                     Mecanica.getServicos().size() + 1);
+
             opcao = entrada.nextInt();
             if (opcao == 0) {
                 break;
