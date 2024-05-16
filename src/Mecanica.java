@@ -40,7 +40,7 @@ public class Mecanica {
         Mecanica.caixa = caixa;
     }
 
-    public boolean reporEstoque(Produto produto, int quantidade) {
+    public static boolean reporEstoque(Produto produto, int quantidade) {
         float custo = quantidade * produto.getCusto();
         if (custo > caixa) {
             return false;
@@ -73,6 +73,7 @@ public class Mecanica {
         Cria um novo produto e adiciona ele na arraylist produtos
          */
         String nome;
+        TipoProduto tipo;
         float preco, custo;
         Scanner entrada = new Scanner(System.in);
         System.out.print("--- Cadastro de Produto ---\n\n");
@@ -85,7 +86,14 @@ public class Mecanica {
         System.out.print("informe o custo: ");
         custo = entrada.nextFloat();
 
-        Produto newProduto = new Produto(preco, custo, nome);
+        System.out.print("informe o tipo: [mecanica (m)/ estética (e)]: ");
+        if (entrada.nextLine().equals("m")) {
+            tipo = TipoProduto.MECANICA;
+        } else {
+            tipo = TipoProduto.ESTETICA;
+        }
+
+        Produto newProduto = new Produto(preco, custo, nome, tipo);
         produtos.add(newProduto);
     }
 

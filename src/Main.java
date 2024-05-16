@@ -11,7 +11,7 @@ public class Main {
         while (true) {
             if (resposta == 0) {
                 break;
-            } else if (resposta == 1) { //Produtos
+            } else if (resposta == 1) {  //Produtos
                 while (true) {
                     System.out.print("--- Produtos ---\n");
                     for (int i = 0; i < Mecanica.getProdutos().size(); i++) {
@@ -25,18 +25,107 @@ public class Main {
                         break;
                     } else if (resposta == Mecanica.getProdutos().size()+1) { //Cadastrar Produto
                         Mecanica.cadastrarProduto();
-                    } else {
+                    } else {  //Produto n
                         while (true) {
+                            Produto produto = Mecanica.getProdutos().get(resposta - 1);
                             System.out.printf("--- %s ---",
-                                    Mecanica.getProdutos().get(resposta - 1).getNome());
-                            System.out.printf("- %f\n- %f\n- %d");
+                                    produto.getNome());
+                            System.out.printf("- Preço: %f\n- Custo: %f\n- Estoque: %d\n- Tipo: %s\n",
+                                    produto.getPreco(), produto.getCusto(), produto.getEstoque(), produto.getTipo());
+                            System.out.print("(1) Repor estoque\n(2) Remover produto\n\n(0) Voltar\nSelecione:");
+                            resposta = entrada.nextInt();
+                            if (resposta == 0) {
+                                break;
+                            } else if (resposta == 1){ //Repor estoque
+                                int quantidade;
+                                System.out.print("Insira a quantidade para adicionar: ");
+                                quantidade = entrada.nextInt();
+                                Mecanica.reporEstoque(produto, quantidade);
+                            } else if (resposta == 2) {
+                                Mecanica.getProdutos().remove(produto);
+                            }
                         }
+                    }
+                }
+            } else if (resposta == 2) {  //Serviços
+                while (true) {
+                    for (int i = 0; i < Mecanica.getServicos().size(); i++) {
+                        System.out.printf("(%d) %s",
+                                i + 1, Mecanica.getServicos().get(i).getNome());
+                    }
+                    System.out.printf("(%d) Cadastrar serviço\n\n(0) Voltar\nSelecione: ",
+                            Mecanica.getServicos().size() + 1);
+                    resposta = entrada.nextInt();
+                    if (resposta == 0){
+                        break;
+                    } else if (resposta == Mecanica.getServicos().size()+1) { //Cadastrar Serviço
+                        Mecanica.cadastrarServico();
+                    } else {  //Serviço n
+                        while (true) {
+                            Servico servico = Mecanica.getServicos().get(resposta - 1);
+                            System.out.printf("--- %s ---",
+                                    servico.getNome());
+                            System.out.printf("- Preço: %f\n- Custo: %f\n",
+                                    servico.getPreco(), servico.getCusto());
+                            System.out.print("(1) Remover serviço\n\n(0) Voltar\nSelecione:");
+                            resposta = entrada.nextInt();
+                            if (resposta == 0) {
+                                break;
+                            } else if (resposta == 1) {  //Remover serviço
+                                Mecanica.getServicos().remove(servico);
+                            }
+                        }
+                    }
+                }
+            } else if (resposta == 3) {  //Clientes
+                while (true) {
+                    for (int i = 0; i < Mecanica.getClientes().size(); i++) {
+                        System.out.printf("(%d) %s",
+                                i + 1, Mecanica.getClientes().get(i).getNome());
+                    }
+                    System.out.printf("(%d) Cadastrar cliente\n\n(0) Voltar\nSelecione: ",
+                            Mecanica.getClientes().size() + 1);
+                    resposta = entrada.nextInt();
+                    if (resposta == 0){
+                        break;
+                    } else if (resposta == Mecanica.getClientes().size()+1) {  //Cadastrar Clientes
+                        Mecanica.cadastrarCliente();
+                    } else {  //Cliente n
+                        while (true) {
+                            Cliente cliente = Mecanica.getClientes().get(resposta - 1);
+                            System.out.printf("--- %s ---",
+                                    cliente.getNome());
+                            System.out.printf("- CPF: %s\n- Pedido: colocar pedido!\n",
+                                    cliente.getCpf());
+                            System.out.print("(1) Remover cliente\n\n(0) Voltar\nSelecione:");
+                            resposta = entrada.nextInt();
+                            if (resposta == 0) {
+                                break;
+                            } else if (resposta == 1) {  //Remover cliente
+                                Mecanica.getClientes().remove(cliente);
+                            }
+                        }
+                    }
+                }
+            } else if (resposta == 4) {
+                while (true) {
+                    for (int i = 0; i < Mecanica.getClientes().size(); i++) {
+                        System.out.printf("(%d) %s",
+                                i + 1, Mecanica.getClientes().get(i).getNome());
+                    }
+                    System.out.printf("\n\n(0) Voltar\nSelecione o cliente: ",
+                            Mecanica.getClientes().size() + 1);
+                    resposta = entrada.nextInt();
+                    if (resposta == 0){
+                        break;
+                    } else {  //Cliente n
+                        Mecanica.getClientes().get(resposta - 1).fazerPedido();
                     }
                 }
             }
         }
     }
     public static void main(String[] args) {
-
+        Menu();
     }
 }
