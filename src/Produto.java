@@ -1,12 +1,14 @@
 public class Produto extends Item{
     private int estoque;
+    private float preco;
     private TipoProduto tipo;
 
     /* Construtor da classe Produto */
     public Produto(float custo, String nome, TipoProduto tipo){
         super(custo, nome);
         this.tipo = tipo;
-        estoque = 0;
+        this.preco = 0;
+        this.estoque = 0;
     }
 
     /* Getters e Setters da classe */
@@ -26,8 +28,17 @@ public class Produto extends Item{
         this.tipo = tipo;
     }
 
-    public void calculaPeso(){
-        this.
+    public float getPreco() {
+        return preco;
+    }
+
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
+    /* Retorna o preco de um produto com base no custo */
+    public float calculaPreco(){
+        return super.calculaPreco() * ((float) 1.25);
     }
 
     /* Define como um objeto Produto deve ser printado */

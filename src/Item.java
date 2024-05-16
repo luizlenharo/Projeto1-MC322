@@ -1,5 +1,4 @@
 public class Item {
-    private float preco;
     private float custo;
     private String nome;
 
@@ -7,18 +6,9 @@ public class Item {
     public Item(float custo, String nome){
         this.custo = custo;
         this.nome = nome;
-        this.preco = 0;
     }
 
     /* Getters e Setter da classe */
-    public float getPreco() {
-        return preco;
-    }
-
-    public void setPreco(float preco) {
-        this.preco = preco;
-    }
-
     public float getCusto() {
         return custo;
     }
@@ -35,7 +25,8 @@ public class Item {
         this.nome = nome;
     }
 
+    /* Retorna um preço base a partir do custo */
     public float calculaPreco(){
-        return this.custo * 2;
+        return custo * 2;
     }
 }
