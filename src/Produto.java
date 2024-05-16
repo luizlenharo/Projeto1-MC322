@@ -29,8 +29,7 @@ public class Produto extends Item{
     /* Define como um objeto Produto deve ser printado */
     public String toString(){
         String out = " ";
-        out += "Nome: " + getNome() + ",Preço: " + getPreco() + ",Custo: "
-                + getCusto() + ",Estoque: " + getEstoque() + ",Tipo: " + getTipo();
+        out += "Nome: " + getNome() + ",Preço: " + getPreco() + ",Custo: " + getCusto() + ",Estoque: " + getEstoque() + ",Tipo: " + getTipo();
         return out;
     }
 }

@@ -10,8 +10,6 @@ public enum TipoProduto {
 
     @Override
     public String toString() {
-        String out = " ";
-        out += this.tipo;
-        return out;
+        return this.tipo;
     }
 }
