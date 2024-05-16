@@ -2,11 +2,13 @@ public class Financas {
     private float gastos;
     private float faturamento;
     private float caixa;
+    private float caixaEmProdutos;
 
     public Financas() {
         this.gastos = 0;
         this.faturamento = 0;
         this.caixa = 1000;
+        this.caixaEmProdutos = 0;
     }
 
     public float getGastos() {
@@ -33,12 +35,20 @@ public class Financas {
         this.caixa = caixa;
     }
 
+    public float getCaixaEmProdutos() {
+        return caixaEmProdutos;
+    }
+
+    public void setCaixaEmProdutos(float caixaEmProdutos) {
+        this.caixaEmProdutos = caixaEmProdutos;
+    }
+
     public float lucro() {
         return faturamento - gastos;
     }
 
     public void reset() {
-        setFaturamento(0);
-        setGastos(0);
+        faturamento = 0;
+        gastos = 0;
     }
 }

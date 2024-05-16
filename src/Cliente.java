@@ -64,8 +64,10 @@ public class Cliente {
                         System.out.printf("Temos somente %d unidades desse produto", produto.getEstoque());
                         acao_p = 0;
                     }
-                    else
+                    else {
                         pedidoAtual.adicionarItem(produto, quantidade);
+                        produto.setEstoque(produto.getEstoque() - quantidade);
+                    }
                 }
             } else if (selecionado == 2) {
                 System.out.println("Selecione o serviço: ");
@@ -87,6 +89,8 @@ public class Cliente {
         System.out.println(pedidoAtual);
         System.out.print("-----------\n");
         Mecanica.getFinancas().setFaturamento(Mecanica.getFinancas().getFaturamento() + pedidoAtual.getPrecoTotal());
+        Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() + pedidoAtual.getPrecoTotal());
+        Mecanica.getFinancas().setCaixaEmProdutos(Mecanica.getFinancas().getCaixaEmProdutos() - pedidoAtual.getPrecoTotal());
         return true;
     }
 }

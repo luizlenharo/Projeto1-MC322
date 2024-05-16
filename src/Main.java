@@ -161,13 +161,22 @@ public class Main {
     public static void financas() {
         Scanner entrada = new Scanner(System.in);
         int opcao;
-        limparTela();
-        System.out.print("\n--- Finanças ---\n");
-        Financas financas = Mecanica.getFinancas();
-        System.out.printf("- faturamento: %f\n- gastos: %f\n- caixa: %f\n\n",
-                financas.getFaturamento(), financas.getGastos(), financas.getCaixa());
-        System.out.print("Pressione qualquer tecla para continuar. ");
-        entrada.nextLine();
+        while (true) {
+            limparTela();
+            System.out.print("\n--- Finanças ---\n");
+            Financas financas = Mecanica.getFinancas();
+            System.out.printf("- faturamento: %f\n- gastos: %f\n- caixa: %f\n- caixa em produtos: %f\n",
+                    financas.getFaturamento(), financas.getGastos(), financas.getCaixa(), financas.getCaixaEmProdutos());
+            System.out.print("(1) Resetar gastos e faturamentos\n");
+            System.out.print("\n(0) Voltar\n");
+            System.out.print("Selecione: ");
+            opcao = entrada.nextInt();
+            if (opcao == 0) {
+                break;
+            } else if (opcao == 1) {
+                financas.reset();
+            }
+        }
     }
 
     public static void Menu() {
