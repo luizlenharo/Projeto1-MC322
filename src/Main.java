@@ -2,18 +2,18 @@ import java.util.Scanner;
 
 public class Main {
     public static void limparTela() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-//        for (int i = 0; i < 10; i++) {
-//            System.out.print("\n\n");
-//        }
+        //System.out.print("\033[H\033[2J");
+        //System.out.flush();
+        for (int i = 0; i < 11; i++) {
+            System.out.print("\n\n");
+        }
     }
 
     public static void produtos() {
         Scanner entrada = new Scanner(System.in);
         int opcao;
-        limparTela();
         while (true) {
+            limparTela();
             System.out.print("\n--- Produtos ---\n");
             System.out.println("(1) Cadastrar novo produto");
             for (int i = 0; i < Mecanica.getProdutos().size(); i++) {
@@ -26,10 +26,12 @@ public class Main {
             if (opcao == 0) {
                 break;
             } else if (opcao == 1) { //Cadastrar Produto
+                limparTela();
                 Mecanica.cadastrarProduto();
             } else {  //Produto n
                 Produto produto = Mecanica.getProdutos().get(opcao - 2);
                 while (true) { // Exibir os produtos
+                    limparTela();
                     System.out.printf("\n--- %s ---\n",
                             produto.getNome());
                     System.out.printf("- Preço: %f\n- Custo: %f\n- Estoque: %d\n- Tipo: %s\n",
@@ -57,6 +59,7 @@ public class Main {
         Scanner entrada = new Scanner(System.in);
         int opcao;
         while (true) {
+            limparTela();
             System.out.print("\n--- Serviços ---\n");
             for (int i = 0; i < Mecanica.getServicos().size(); i++) {
                 System.out.printf("(%d) %s\n",
@@ -69,9 +72,11 @@ public class Main {
             if (opcao == 0) {
                 break;
             } else if (opcao == Mecanica.getServicos().size() + 1) { //Cadastrar Serviço
+                limparTela();
                 Mecanica.cadastrarServico();
             } else {  //Serviço n
                 while (true) {
+                    limparTela();
                     Servico servico = Mecanica.getServicos().get(opcao - 1);
                     System.out.printf("\n--- %s ---\n",
                             servico.getNome());
@@ -94,6 +99,7 @@ public class Main {
         Scanner entrada = new Scanner(System.in);
         int opcao;
         while (true) {
+            limparTela();
             System.out.print("\n--- Clientes ---\n");
             for (int i = 0; i < Mecanica.getClientes().size(); i++) {
                 System.out.printf("(%d) %s\n",
@@ -105,9 +111,11 @@ public class Main {
             if (opcao == 0) {
                 break;
             } else if (opcao == Mecanica.getClientes().size() + 1) {  //Cadastrar Clientes
+                limparTela();
                 Mecanica.cadastrarCliente();
             } else {  //Cliente n
                 while (true) {
+                    limparTela();
                     Cliente cliente = Mecanica.getClientes().get(opcao - 1);
                     System.out.printf("\n--- %s ---\n",
                             cliente.getNome());
@@ -131,6 +139,7 @@ public class Main {
     public static void novoPedido() {
         Scanner entrada = new Scanner(System.in);
         int opcao;
+        limparTela();
         while (true) {
             System.out.print("\n--- Novo Pedido ---\n");
             for (int i = 0; i < Mecanica.getClientes().size(); i++) {
@@ -152,6 +161,7 @@ public class Main {
     public static void financas() {
         Scanner entrada = new Scanner(System.in);
         int opcao;
+        limparTela();
         System.out.print("\n--- Finanças ---\n");
         Financas financas = Mecanica.getFinancas();
         System.out.printf("- faturamento: %f\n- gastos: %f\n- caixa: %f\n\n",
@@ -164,13 +174,14 @@ public class Main {
         int opcao = -1;
         Scanner entrada = new Scanner(System.in);
         while (opcao != 0) {
+            limparTela();
             System.out.print("\n--- Mecânica ---\n");
-            System.out.println("(0) Sair");
             System.out.println("(1) Produtos");
             System.out.println("(2) Serviços");
             System.out.println("(3) Clientes");
             System.out.println("(4) Novo Pedido");
             System.out.println("(5) Visualizar Financas");
+            System.out.println("\n(0) Sair");
             System.out.println("Escolha a opcao desejada: ");
 
             opcao = entrada.nextInt();

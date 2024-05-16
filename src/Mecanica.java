@@ -48,6 +48,7 @@ public class Mecanica {
             return false;
         }
         financas.setCaixa(financas.getCaixa() - custo);
+        financas.setGastos(financas.getGastos() + custo);
         produto.setEstoque(produto.getEstoque() + quantidade);
         return true;
     }

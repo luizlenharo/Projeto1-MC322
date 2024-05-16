@@ -44,10 +44,10 @@ public class Cliente {
 
         // Enquanto o cliente não finalizar o pedido, este menu se mantém
         while (selecionado != 0) {
-            System.out.println("Selecione:\n (1) Produtos\n (2) Serviços\n (0) Finalizar pedido");
+            System.out.println("\nSelecione:\n (1) Produtos\n (2) Serviços\n (3) Carrinho\n (0) Finalizar pedido");
             selecionado = scanner.nextInt();
             if (selecionado == 1) {
-                System.out.println("Selecione o produto:");
+                System.out.println("\nSelecione o produto:");
                 // Mostra todos os produtos disponíveis
                 for (i = 0; i < Mecanica.getProdutos().size(); i++) {
                     System.out.println("(" + (i + 1) + ") " + Mecanica.getProdutos().get(i).getNome());
@@ -57,7 +57,7 @@ public class Cliente {
                 // Caso ele selecione algum pedido
                 if (acao_p != 0) {
                     Produto produto = Mecanica.getProdutos().get(acao_p - 1);
-                    System.out.println("Digite a quantidade: ");
+                    System.out.println("\nDigite a quantidade: ");
                     int quantidade = scanner.nextInt();
                     // Verifica se há disponibilidade no estoque, se não houver ele não cria o pedido e volta ao menu inicial
                     if (quantidade > produto.getEstoque()) {
@@ -77,12 +77,16 @@ public class Cliente {
                 Servico servico =  Mecanica.getServicos().get(scanner.nextInt() - 1);
 
                 pedidoAtual.adicionarItem(servico);
+            } else if (selecionado == 3) {
+                System.out.print("\n--- Carinho ---\n");
+                System.out.println(pedidoAtual);
             }
         }
-
+        System.out.print("\n-----------\n");
         System.out.println("Pedido finalizado com os seguintes itens:");
         System.out.println(pedidoAtual);
-
+        System.out.print("-----------\n");
+        Mecanica.getFinancas().setFaturamento(Mecanica.getFinancas().getFaturamento() + pedidoAtual.getPrecoTotal());
         return true;
     }
 }

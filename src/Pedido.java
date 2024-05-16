@@ -23,6 +23,7 @@ public class Pedido {
         if (itemQuantidade.get(item) != null)
             quantidade += itemQuantidade.get(item);
         itemQuantidade.put(item, quantidade);
+        precoTotal = precoTotal + quantidade*item.calculaPreco();
     }
 
     // Para usar com servicos, que nao têm quantidade
