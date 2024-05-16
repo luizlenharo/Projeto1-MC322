@@ -18,6 +18,7 @@ public class Pedido {
         this.itemQuantidade = itemQuantidade;
     }
 
+    // Para usar com produtos
     public void adicionarItem(Item item, int quantidade) {
         if (itemQuantidade.get(item) != null)
             quantidade += itemQuantidade.get(item);

@@ -6,7 +6,7 @@ public class Financas {
     public Financas() {
         this.gastos = 0;
         this.faturamento = 0;
-        this.caixa = 0;
+        this.caixa = 1000;
     }
 
     public float getGastos() {
