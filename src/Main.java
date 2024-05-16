@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void Menu(){
+    public static void Menu() {
         int resposta;
         Scanner entrada = new Scanner(System.in);
         System.out.print("--- Mecânica ---\n");
@@ -16,14 +16,14 @@ public class Main {
                     System.out.print("--- Produtos ---\n");
                     for (int i = 0; i < Mecanica.getProdutos().size(); i++) {
                         System.out.printf("(%d) %s",
-                                i+1, Mecanica.getProdutos().get(i).getNome());
+                                i + 1, Mecanica.getProdutos().get(i).getNome());
                     }
                     System.out.printf("(%d) Cadastrar produto\n\n(0) Voltar\nSelecione: ",
                             Mecanica.getProdutos().size() + 1);
                     resposta = entrada.nextInt();
-                    if (resposta == 0){
+                    if (resposta == 0) {
                         break;
-                    } else if (resposta == Mecanica.getProdutos().size()+1) { //Cadastrar Produto
+                    } else if (resposta == Mecanica.getProdutos().size() + 1) { //Cadastrar Produto
                         Mecanica.cadastrarProduto();
                     } else {  //Produto n
                         while (true) {
@@ -36,7 +36,7 @@ public class Main {
                             resposta = entrada.nextInt();
                             if (resposta == 0) {
                                 break;
-                            } else if (resposta == 1){ //Repor estoque
+                            } else if (resposta == 1) { //Repor estoque
                                 int quantidade;
                                 System.out.print("Insira a quantidade para adicionar: ");
                                 quantidade = entrada.nextInt();
@@ -56,9 +56,9 @@ public class Main {
                     System.out.printf("(%d) Cadastrar serviço\n\n(0) Voltar\nSelecione: ",
                             Mecanica.getServicos().size() + 1);
                     resposta = entrada.nextInt();
-                    if (resposta == 0){
+                    if (resposta == 0) {
                         break;
-                    } else if (resposta == Mecanica.getServicos().size()+1) { //Cadastrar Serviço
+                    } else if (resposta == Mecanica.getServicos().size() + 1) { //Cadastrar Serviço
                         Mecanica.cadastrarServico();
                     } else {  //Serviço n
                         while (true) {
@@ -86,9 +86,9 @@ public class Main {
                     System.out.printf("(%d) Cadastrar cliente\n\n(0) Voltar\nSelecione: ",
                             Mecanica.getClientes().size() + 1);
                     resposta = entrada.nextInt();
-                    if (resposta == 0){
+                    if (resposta == 0) {
                         break;
-                    } else if (resposta == Mecanica.getClientes().size()+1) {  //Cadastrar Clientes
+                    } else if (resposta == Mecanica.getClientes().size() + 1) {  //Cadastrar Clientes
                         Mecanica.cadastrarCliente();
                     } else {  //Cliente n
                         while (true) {
@@ -116,7 +116,7 @@ public class Main {
                     System.out.printf("\n\n(0) Voltar\nSelecione o cliente: ",
                             Mecanica.getClientes().size() + 1);
                     resposta = entrada.nextInt();
-                    if (resposta == 0){
+                    if (resposta == 0) {
                         break;
                     } else {  //Cliente n
                         Mecanica.getClientes().get(resposta - 1).fazerPedido();
@@ -125,6 +125,7 @@ public class Main {
             }
         }
     }
+
     public static void main(String[] args) {
         Menu();
     }
