@@ -43,6 +43,8 @@ public class Mecanica {
     public static boolean reporEstoque(Produto produto, int quantidade) {
         float custo = quantidade * produto.getCusto();
         if (custo > financas.getCaixa()) {
+            System.out.println("A Mecanica nao tem caixa para fazer essa aquisicao.");
+            System.out.printf("Caixa atual: %f. Custo do(s) produto(s): %f\n", financas.getCaixa(), custo);
             return false;
         }
         financas.setCaixa(financas.getCaixa() - custo);
