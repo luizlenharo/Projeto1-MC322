@@ -36,10 +36,11 @@ public class Cliente {
     }
 
     public boolean fazerPedido(){
+        this.pedidoAtual = new Pedido();
         int i=0, acao_p=0, acao_s = 0, selecionado=10;
         Scanner scanner = new Scanner(System.in);
         while (selecionado != 0) {
-            System.out.println("Selecione:\n (1) Produtos\n (2) Serviços\n (0) Voltar");
+            System.out.println("Selecione:\n (1) Produtos\n (2) Serviços\n (0) Finalizar pedido");
             selecionado = scanner.nextInt();
             if (selecionado == 1) {
                 System.out.println("Selecione o produto:");
@@ -49,13 +50,16 @@ public class Cliente {
                 System.out.println("(0) Voltar");
                 acao_p = scanner.nextInt();
                 if (acao_p != 0) {
+                    Produto produto = Mecanica.getProdutos().get(acao_p - 1);
+
                     System.out.println("Digite a quantidade: ");
                     int quantidade = scanner.nextInt();
-                    if (quantidade > Mecanica.getProdutos().get(acao_p - 1).getEstoque()) {
-                        System.out.println("Sem estoque");
+                    if (quantidade > produto.getEstoque()) {
+                        System.out.printf("Temos somente %d unidades desse produto", produto.getEstoque());
                         acao_p = 0;
                     }
-                    Pedido newPedido = new Pedido(Mecanica.getProdutos().get(acao_p-1).getNome(), quantidade);
+                    else
+                        pedidoAtual.adicionarItem(produto, quantidade);
                 }
             } else if (selecionado == 2) {
                 System.out.println("Selecione o serviço: ");
@@ -63,12 +67,14 @@ public class Cliente {
                     System.out.println("(" + (i + 1) + ") " + Mecanica.getProdutos().get(i).getNome());
                 }
                 System.out.println("(0) Voltar");
-                acao_s = scanner.nextInt();
-                Pedido newPedido = new Pedido(Mecanica.getServicos().get(acao_s-1).getNome(), 0);
+                Servico servico =  Mecanica.getServicos().get(scanner.nextInt() - 1);
+
+                pedidoAtual.adicionarItem(servico);
             }
         }
 
-        //acao_p-1 indice do produto, acao_s indice do serviço
+        System.out.printf("Pedido finalizado com os seguintes itens:");
+        System.out.println(pedidoAtual);
 
         return true;
     }
