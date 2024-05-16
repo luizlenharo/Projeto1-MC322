@@ -28,8 +28,8 @@ public class Main {
             } else if (opcao == 1) { //Cadastrar Produto
                 Mecanica.cadastrarProduto();
             } else {  //Produto n
+                Produto produto = Mecanica.getProdutos().get(opcao - 2);
                 while (true) { // Exibir os produtos
-                    Produto produto = Mecanica.getProdutos().get(opcao - 2);
                     System.out.printf("\n--- %s ---\n",
                             produto.getNome());
                     System.out.printf("- Preço: %f\n- Custo: %f\n- Estoque: %d\n- Tipo: %s\n",
