@@ -6,6 +6,7 @@ public class Mecanica {
     private static ArrayList<Produto> produtos = new ArrayList<Produto>();
     private static ArrayList<Servico> servicos = new ArrayList<Servico>();
     private static float caixa;
+    private Financas financas;
 
 
     public static ArrayList<Cliente> getClientes() {
