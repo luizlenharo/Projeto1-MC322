@@ -83,8 +83,8 @@ public class Mecanica {
         System.out.print("informe o nome: ");
         nome = entrada.nextLine();
 
-        System.out.print("informe o preço: ");
-        preco = entrada.nextFloat();
+//        System.out.print("informe o preço: ");
+//        preco = entrada.nextFloat();
 
         System.out.print("informe o custo: ");
         custo = entrada.nextFloat();
@@ -98,7 +98,8 @@ public class Mecanica {
             tipo = TipoProduto.ESTETICA;
         }
 
-        Produto newProduto = new Produto(preco, custo, nome, tipo);
+        Produto newProduto = new Produto(custo, nome, tipo);
+        newProduto.setPreco(newProduto.calculaPreco());
         produtos.add(newProduto);
     }
 
@@ -113,8 +114,8 @@ public class Mecanica {
         System.out.print("informe o nome: ");
         nome = entrada.nextLine();
 
-        System.out.print("informe o preço: ");
-        preco = entrada.nextFloat();
+//        System.out.print("informe o preço: ");
+//        preco = entrada.nextFloat();
 
         System.out.print("informe o custo: ");
         custo = entrada.nextFloat();
@@ -122,8 +123,8 @@ public class Mecanica {
         System.out.print("informe a descrição: ");
         descricao = entrada.nextLine();
 
-        Servico newServico = new Servico(preco, custo, nome, descricao);
-        servicos.add(newServico);
+        Servico newServico = new Servico(custo, nome, descricao);
+        newServico.setPreco(newServico.calculaPreco());
         return newServico;
     }
 }

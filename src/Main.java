@@ -34,6 +34,7 @@ public class Main {
                             produto.getNome());
                     System.out.printf("- Preço: %f\n- Custo: %f\n- Estoque: %d\n- Tipo: %s\n",
                             produto.getPreco(), produto.getCusto(), produto.getEstoque(), produto.getTipo());
+
                     System.out.print("(1) Repor estoque\n(2) Remover produto\n\n(0) Voltar\nSelecione: ");
                     opcao = entrada.nextInt();
                     if (opcao == 0) {
