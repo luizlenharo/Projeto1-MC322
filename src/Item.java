@@ -4,10 +4,10 @@ public class Item {
     private String nome;
 
     /* Construtor da classe Item */
-    public Item(float preco, float custo, String nome){
-        this.preco = preco;
+    public Item(float custo, String nome){
         this.custo = custo;
         this.nome = nome;
+        this.preco = 0;
     }
 
     /* Getters e Setter da classe */
@@ -33,5 +33,9 @@ public class Item {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public float calculaPreco(){
+        return this.custo * 2;
     }
 }

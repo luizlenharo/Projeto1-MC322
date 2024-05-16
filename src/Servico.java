@@ -2,8 +2,8 @@ public class Servico extends Item{
     private String descricao;
 
     /* Construtor da classe Servico */
-    public Servico(float preco, float custo, String nome, String descricao){
-        super(preco, custo, nome);
+    public Servico(float custo, String nome, String descricao){
+        super(custo, nome);
         this.descricao = descricao;
     }
 

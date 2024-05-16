@@ -3,8 +3,8 @@ public class Produto extends Item{
     private TipoProduto tipo;
 
     /* Construtor da classe Produto */
-    public Produto(float preco, float custo, String nome, TipoProduto tipo){
-        super(preco, custo, nome);
+    public Produto(float custo, String nome, TipoProduto tipo){
+        super(custo, nome);
         this.tipo = tipo;
         estoque = 0;
     }
@@ -24,6 +24,10 @@ public class Produto extends Item{
 
     public void setTipo(TipoProduto tipo) {
         this.tipo = tipo;
+    }
+
+    public void calculaPeso(){
+        this.
     }
 
     /* Define como um objeto Produto deve ser printado */
