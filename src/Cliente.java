@@ -82,6 +82,7 @@ public class Cliente {
             } else if (selecionado == 3) {
                 System.out.print("\n--- Carinho ---\n");
                 System.out.println(pedidoAtual);
+                System.out.print("\n---------------\n");
             }
         }
         System.out.print("\n-----------\n");
