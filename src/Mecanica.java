@@ -73,11 +73,11 @@ public class Mecanica {
         /*
         Cria um novo produto e adiciona ele na arraylist produtos
          */
-        String nome;
+        String nome, resposta;
         TipoProduto tipo;
         float preco, custo;
         Scanner entrada = new Scanner(System.in);
-        System.out.print("--- Cadastro de Produto ---\n\n");
+        System.out.print("\n--- Cadastro de Produto ---\n\n");
         System.out.print("informe o nome: ");
         nome = entrada.nextLine();
 
@@ -88,7 +88,8 @@ public class Mecanica {
         custo = entrada.nextFloat();
 
         System.out.print("informe o tipo: [mecanica (m)/ estética (e)]: ");
-        if (entrada.nextLine().equals("m")) {
+        resposta = entrada.nextLine();
+        if (resposta.equals("m")) {
             tipo = TipoProduto.MECANICA;
         } else {
             tipo = TipoProduto.ESTETICA;
