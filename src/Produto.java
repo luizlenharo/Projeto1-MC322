@@ -38,7 +38,7 @@ public class Produto extends Item{
 
     /* Retorna o preco de um produto com base no custo */
     public float calculaPreco(){
-        return super.calculaPreco() * ((float) 1.25);
+        return super.calculaPreco() * ((float) 0.75);
     }
 
     /* Define como um objeto Produto deve ser printado */
