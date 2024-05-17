@@ -41,23 +41,41 @@ public class Pedido {
 
     @Override
     public String toString() {
-        String retorno = "Servicos:\n";
-        for (Item i: Collections.list(itemQuantidade.keys()))  {
-            if (i.getClass() == Servico.class)
-                retorno += i.getNome();
-            retorno += ", ";
-        }
-        retorno = retorno.substring(0, retorno.length()-2); // Retura a ultima virgula e seu espaco
+        float precoTotal = 0;
 
-        retorno += "\nProdutos:\n";
+        String retorno = "Servicos:\n\t";
+        boolean haServicos = false;
         for (Item i: Collections.list(itemQuantidade.keys()))  {
-            if (i.getClass() == Produto.class)
-                retorno += itemQuantidade.get(i).toString() + " " + i.getNome() + "(s)";
-                //         Quantidade do produto                    Nome do produto
-            retorno += ", ";
+            if (i.getClass() == Servico.class) {
+                haServicos = true;
+                retorno += i.getNome();
+                retorno += ", ";
+                precoTotal += ((Servico) i).getPreco();
+            }
         }
-        retorno = retorno.substring(0, retorno.length()-2); // Retura a ultima virgula e seu espaco
-        retorno += "\n";
+        if (haServicos)
+            retorno = retorno.substring(0, retorno.length()-2); // Retura a ultima virgula e seu espaco
+        else
+            retorno += "Nao ha servicos no pedido";
+
+        retorno += "\nProdutos:\n\t";
+        boolean haProdutos = false;
+        for (Item i: Collections.list(itemQuantidade.keys()))  {
+            if (i.getClass() == Produto.class) {
+                haProdutos = true;
+                retorno += itemQuantidade.get(i).toString() + " " + i.getNome() + "(s)";
+                retorno += ", ";
+                precoTotal += ((Produto) i).getPreco() * itemQuantidade.get(i);
+            }
+        }
+        if (haProdutos)
+            retorno = retorno.substring(0, retorno.length()-2); // Retura a ultima virgula e seu espaco
+        else
+            retorno += "Nao ha produtos no pedido";
+
+
+        retorno += String.format("\nPreco total: R$ %.2f", precoTotal);
+
 
         return retorno;
     }

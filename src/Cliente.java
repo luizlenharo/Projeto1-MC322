@@ -81,7 +81,7 @@ public class Cliente {
 
                 pedidoAtual.adicionarItem(servico);
             } else if (selecionado == 3) {
-                System.out.print("\n--- Carinho ---\n");
+                System.out.print("\n--- Carrinho ---\n");
                 System.out.println(pedidoAtual);
                 System.out.print("---------------\n");
                 System.out.print("Pressione qualquer tecla para continuar. ");
