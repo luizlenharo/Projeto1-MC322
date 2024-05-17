@@ -64,10 +64,10 @@ public class Mecanica {
         String nome, cpf;
         Scanner entrada = new Scanner(System.in);
         System.out.print("\n--- Cadastro de Cliente ---\n");
-        System.out.print("informe o nome: ");
+        System.out.print("Informe o nome do cliente: ");
         nome = entrada.nextLine();
 
-        System.out.print("informe o cpf: ");
+        System.out.print("Informe o cpf do cliente: ");
         cpf = entrada.nextLine();
 
         Cliente newCliente = new Cliente(cpf, nome);
@@ -85,16 +85,13 @@ public class Mecanica {
         float preco, custo;
         Scanner entrada = new Scanner(System.in);
         System.out.print("\n--- Cadastro de Produto ---\n");
-        System.out.print("informe o nome: ");
+        System.out.print("Informe o nome do produto: ");
         nome = entrada.nextLine();
 
-//        System.out.print("informe o preço: ");
-//        preco = entrada.nextFloat();
-
-        System.out.print("informe o custo: ");
+        System.out.print("Informe o custo de aquisicao do produto: ");
         custo = entrada.nextFloat();
 
-        System.out.print("informe o tipo: [(1) mecanica/ (2) estética]: ");
+        System.out.print("Informe o tipo: [(1) mecanica/ (2) estética]: ");
         resposta = entrada.nextInt();
 
         if (resposta == 1) {
@@ -110,20 +107,18 @@ public class Mecanica {
     }
 
     public static void cadastrarServico() {
-        /*
-        Cria um novo serviço e adiciona ele na arraylist serviços
-         */
+        // Cria um novo serviço e adiciona ele na arraylist serviços
         String nome, descricao;
         float custo;
         Scanner entrada = new Scanner(System.in);
         System.out.print("\n--- Cadastro de Serviço ---\n");
-        System.out.print("informe o nome: ");
+        System.out.print("Informe o nome do servico: ");
         nome = entrada.nextLine();
 
-        System.out.print("informe o custo: ");
+        System.out.print("Informe o custo de execucao do servico: ");
         custo = entrada.nextFloat();
 
-        System.out.print("informe a descrição: ");
+        System.out.print("Informe a descrição: ");
         descricao = entrada.nextLine();
 
         Servico newServico = new Servico(custo, nome, descricao);

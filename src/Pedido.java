@@ -43,6 +43,7 @@ public class Pedido {
     public String toString() {
         float precoTotal = 0;
 
+        // Enumera os servicos, separados por virgulas
         String retorno = "Servicos:\n\t";
         boolean haServicos = false;
         for (Item i: Collections.list(itemQuantidade.keys()))  {
@@ -53,11 +54,13 @@ public class Pedido {
                 precoTotal += ((Servico) i).getPreco();
             }
         }
+        // Verifica se ha algum servico no pedido
         if (haServicos)
             retorno = retorno.substring(0, retorno.length()-2); // Retura a ultima virgula e seu espaco
         else
             retorno += "Nao ha servicos no pedido";
 
+        // Enumera os produtos e suas quantidades, separados por virgulas
         retorno += "\nProdutos:\n\t";
         boolean haProdutos = false;
         for (Item i: Collections.list(itemQuantidade.keys()))  {
@@ -68,14 +71,14 @@ public class Pedido {
                 precoTotal += ((Produto) i).getPreco() * itemQuantidade.get(i);
             }
         }
+        // Verifica se ha produtos no pedido
         if (haProdutos)
             retorno = retorno.substring(0, retorno.length()-2); // Retura a ultima virgula e seu espaco
         else
             retorno += "Nao ha produtos no pedido";
 
-
+        // Informa o subtotal do pedido na string
         retorno += String.format("\nPreco total: R$ %.2f", precoTotal);
-
 
         return retorno;
     }
