@@ -80,8 +80,8 @@ public class Main {
                     Servico servico = Mecanica.getServicos().get(opcao - 1);
                     System.out.printf("\n--- %s ---\n",
                             servico.getNome());
-                    System.out.printf("- Preço: %f\n- Custo: %f\n",
-                            servico.getPreco(), servico.getCusto());
+                    System.out.printf("* %s\n- Preço: %f\n- Custo: %f\n",
+                            servico.getDescricao(), servico.getPreco(), servico.getCusto());
                     System.out.print("(1) Remover serviço\n\n(0) Voltar\nSelecione:");
                     opcao = entrada.nextInt();
                     if (opcao == 0) {

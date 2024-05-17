@@ -41,6 +41,7 @@ public class Cliente {
         this.pedidoAtual = new Pedido();
         int i=0, acao_p=0, acao_s = 0, selecionado=10;
         Scanner scanner = new Scanner(System.in);
+        Scanner entrada = new Scanner(System.in);
 
         // Enquanto o cliente não finalizar o pedido, este menu se mantém
         while (selecionado != 0) {
@@ -82,13 +83,17 @@ public class Cliente {
             } else if (selecionado == 3) {
                 System.out.print("\n--- Carinho ---\n");
                 System.out.println(pedidoAtual);
-                System.out.print("\n---------------\n");
+                System.out.print("---------------\n");
+                System.out.print("Pressione qualquer tecla para continuar. ");
+                entrada.nextLine();
             }
         }
         System.out.print("\n-----------\n");
         System.out.println("Pedido finalizado com os seguintes itens:");
         System.out.println(pedidoAtual);
         System.out.print("-----------\n");
+        System.out.print("Pressione qualquer tecla para continuar. ");
+        entrada.nextLine();
         Mecanica.getFinancas().setFaturamento(Mecanica.getFinancas().getFaturamento() + pedidoAtual.getPrecoTotal());
         Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() + pedidoAtual.getPrecoTotal());
         Mecanica.getFinancas().setCaixaEmProdutos(Mecanica.getFinancas().getCaixaEmProdutos() - pedidoAtual.getPrecoTotal());

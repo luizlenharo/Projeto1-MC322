@@ -43,8 +43,11 @@ public class Mecanica {
     public static boolean reporEstoque(Produto produto, int quantidade) {
         float custo = quantidade * produto.getCusto();
         if (custo > financas.getCaixa()) {
+            Scanner entrada = new Scanner(System.in);
             System.out.println("A Mecanica nao tem caixa para fazer essa aquisicao.");
             System.out.printf("Caixa atual: %f. Custo do(s) produto(s): %f\n", financas.getCaixa(), custo);
+            System.out.print("Pressione qualquer tecla para continuar. ");
+            entrada.nextLine();
             return false;
         }
         financas.setCaixa(financas.getCaixa() - custo);
@@ -111,14 +114,11 @@ public class Mecanica {
         Cria um novo serviço e adiciona ele na arraylist serviços
          */
         String nome, descricao;
-        float preco, custo;
+        float custo;
         Scanner entrada = new Scanner(System.in);
         System.out.print("\n--- Cadastro de Serviço ---\n");
         System.out.print("informe o nome: ");
         nome = entrada.nextLine();
-
-//        System.out.print("informe o preço: ");
-//        preco = entrada.nextFloat();
 
         System.out.print("informe o custo: ");
         custo = entrada.nextFloat();
