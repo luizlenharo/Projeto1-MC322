@@ -1,6 +1,6 @@
 public enum TipoProduto {
-    MECANICA("Mecânica"),
-    ESTETICA("Estética");
+    MECANICA("Mecanica"),
+    ESTETICA("Estetica");
 
     private final String tipo;
 

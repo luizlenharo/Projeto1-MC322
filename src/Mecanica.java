@@ -43,11 +43,10 @@ public class Mecanica {
     public static boolean reporEstoque(Produto produto, int quantidade) {
         float custo = quantidade * produto.getCusto();
         if (custo > financas.getCaixa()) {
-            Scanner entrada = new Scanner(System.in);
             System.out.println("A Mecanica nao tem caixa para fazer essa aquisicao.");
             System.out.printf("Caixa atual: %f. Custo do(s) produto(s): %f\n", financas.getCaixa(), custo);
-            System.out.print("Pressione qualquer tecla para continuar. ");
-            entrada.nextLine();
+            System.out.print("Pressione [ENTER] tecla para continuar. ");
+            Leitor.esperarEnter();
             return false;
         }
         financas.setCaixa(financas.getCaixa() - custo);
@@ -62,13 +61,12 @@ public class Mecanica {
         Cria um novo cliente e adiciona ele na arraylist clientes
          */
         String nome, cpf;
-        Scanner entrada = new Scanner(System.in);
         System.out.print("\n--- Cadastro de Cliente ---\n");
         System.out.print("Informe o nome do cliente: ");
-        nome = entrada.nextLine();
+        nome = Leitor.lerLinha();
 
         System.out.print("Informe o cpf do cliente: ");
-        cpf = entrada.nextLine();
+        cpf = Leitor.lerLinha();
 
         Cliente newCliente = new Cliente(cpf, nome);
         clientes.add(newCliente);
@@ -83,16 +81,15 @@ public class Mecanica {
         int resposta;
         TipoProduto tipo;
         float preco, custo;
-        Scanner entrada = new Scanner(System.in);
         System.out.print("\n--- Cadastro de Produto ---\n");
         System.out.print("Informe o nome do produto: ");
-        nome = entrada.nextLine();
+        nome = Leitor.lerLinha();
 
         System.out.print("Informe o custo de aquisicao do produto: ");
-        custo = entrada.nextFloat();
+        custo = Leitor.lerFloat();
 
-        System.out.print("Informe o tipo: [(1) mecanica/ (2) estética]: ");
-        resposta = entrada.nextInt();
+        System.out.print("Informe o tipo: [(1) Mecanica/ (2) Estetica]: ");
+        resposta = Leitor.lerInt();
 
         if (resposta == 1) {
             tipo = TipoProduto.MECANICA;
@@ -110,16 +107,15 @@ public class Mecanica {
         // Cria um novo serviço e adiciona ele na arraylist serviços
         String nome, descricao;
         float custo;
-        Scanner entrada = new Scanner(System.in);
         System.out.print("\n--- Cadastro de Serviço ---\n");
         System.out.print("Informe o nome do servico: ");
-        nome = entrada.nextLine();
+        nome = Leitor.lerLinha();
 
         System.out.print("Informe o custo de execucao do servico: ");
-        custo = entrada.nextFloat();
+        custo = Leitor.lerFloat();
 
         System.out.print("Informe a descrição: ");
-        descricao = entrada.nextLine();
+        descricao = Leitor.lerLinha();
 
         Servico newServico = new Servico(custo, nome, descricao);
         newServico.setPreco(newServico.calculaPreco());

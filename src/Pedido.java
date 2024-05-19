@@ -56,7 +56,7 @@ public class Pedido {
         }
         // Verifica se ha algum servico no pedido
         if (haServicos)
-            retorno = retorno.substring(0, retorno.length()-2); // Retura a ultima virgula e seu espaco
+            retorno = retorno.substring(0, retorno.length()-2); // Retira a ultima virgula e seu espaco
         else
             retorno += "Nao ha servicos no pedido";
 
@@ -73,7 +73,7 @@ public class Pedido {
         }
         // Verifica se ha produtos no pedido
         if (haProdutos)
-            retorno = retorno.substring(0, retorno.length()-2); // Retura a ultima virgula e seu espaco
+            retorno = retorno.substring(0, retorno.length()-2); // Retira a ultima virgula e seu espaco
         else
             retorno += "Nao ha produtos no pedido";
 

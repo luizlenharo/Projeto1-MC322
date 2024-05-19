@@ -40,13 +40,11 @@ public class Cliente {
     public boolean fazerPedido(){
         this.pedidoAtual = new Pedido();
         int i=0, acao_p=0, acao_s = 0, selecionado=10;
-        Scanner scanner = new Scanner(System.in);
-        Scanner entrada = new Scanner(System.in);
 
         // Enquanto o cliente não finalizar o pedido, este menu se mantém
         while (selecionado != 0) {
             System.out.println("\nSelecione:\n (1) Produtos\n (2) Serviços\n (3) Carrinho\n (0) Finalizar pedido");
-            selecionado = scanner.nextInt();
+            selecionado = Leitor.lerInt();
             if (selecionado == 1) {
                 System.out.println("\nSelecione o produto:");
                 // Mostra todos os produtos disponíveis
@@ -54,12 +52,12 @@ public class Cliente {
                     System.out.println("(" + (i + 1) + ") " + Mecanica.getProdutos().get(i).getNome());
                 }
                 System.out.println("(0) Voltar");
-                acao_p = scanner.nextInt();
+                acao_p = Leitor.lerInt();
                 // Caso ele selecione algum pedido
                 if (acao_p != 0) {
                     Produto produto = Mecanica.getProdutos().get(acao_p - 1);
                     System.out.println("\nDigite a quantidade: ");
-                    int quantidade = scanner.nextInt();
+                    int quantidade = Leitor.lerInt();
                     // Verifica se há disponibilidade no estoque, se não houver ele não cria o pedido e volta ao menu inicial
                     if (quantidade > produto.getEstoque()) {
                         System.out.printf("Temos somente %d unidades desse produto", produto.getEstoque());
@@ -77,23 +75,27 @@ public class Cliente {
                     System.out.println("(" + (i + 1) + ") " + Mecanica.getServicos().get(i).getNome());
                 }
                 System.out.println("(0) Voltar");
-                Servico servico =  Mecanica.getServicos().get(scanner.nextInt() - 1);
+                Servico servico =  Mecanica.getServicos().get(Leitor.lerInt() - 1);
 
                 pedidoAtual.adicionarItem(servico);
             } else if (selecionado == 3) {
                 System.out.print("\n--- Carrinho ---\n");
                 System.out.println(pedidoAtual);
                 System.out.print("---------------\n");
-                System.out.print("Pressione qualquer tecla para continuar. ");
-                entrada.nextLine();
+                System.out.print("Pressione [ENTER] para continuar. ");
+                Leitor.esperarEnter();
+            }
+            else if (selecionado != 0){
+                System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
+                Leitor.esperarEnter();
             }
         }
         System.out.print("\n-----------\n");
         System.out.println("Pedido finalizado com os seguintes itens:");
         System.out.println(pedidoAtual);
         System.out.print("-----------\n");
-        System.out.print("Pressione qualquer tecla para continuar. ");
-        entrada.nextLine();
+        System.out.print("Pressione [ENTER] para continuar. ");
+        Leitor.esperarEnter();
         Mecanica.getFinancas().setFaturamento(Mecanica.getFinancas().getFaturamento() + pedidoAtual.getPrecoTotal());
         Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() + pedidoAtual.getPrecoTotal());
         Mecanica.getFinancas().setCaixaEmProdutos(Mecanica.getFinancas().getCaixaEmProdutos() - pedidoAtual.getPrecoTotal());

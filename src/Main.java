@@ -10,17 +10,16 @@ public class Main {
     }
 
     private static void exibirProduto(Produto produto) {
-        Scanner entrada = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) { // Exibir os produtos
             limparTela();
             System.out.printf("\n--- %s ---\n",
                     produto.getNome());
-            System.out.printf("- Preço: %f\n- Custo: %f\n- Estoque: %d\n- Tipo: %s\n",
+            System.out.printf("- Preço: R$ %.2f\n- Custo: R$ %.2f\n- Estoque: %d\n- Tipo: %s\n",
                     produto.getPreco(), produto.getCusto(), produto.getEstoque(), produto.getTipo());
 
             System.out.print("(1) Repor estoque\n(2) Remover produto\n\n(0) Voltar\nSelecione: ");
-            opcao = entrada.nextInt();
+            opcao = Leitor.lerInt();
 
             switch (opcao) {
                 case 0:
@@ -28,7 +27,7 @@ public class Main {
                 case 1:
                     int quantidade;
                     System.out.print("Insira a quantidade para adicionar: ");
-                    quantidade = entrada.nextInt();
+                    quantidade = Leitor.lerInt();
                     Mecanica.reporEstoque(produto, quantidade);
                     break;
                 case 2:
@@ -36,14 +35,12 @@ public class Main {
                     break;
                 default:
                     System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
-                    entrada.nextLine();
-                    entrada.nextLine();
+                    Leitor.esperarEnter();
             }
         }
     }
 
     private static void produtos() {
-        Scanner entrada = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
             limparTela();
@@ -54,7 +51,7 @@ public class Main {
                         i + 2, Mecanica.getProdutos().get(i).getNome());
             }
             System.out.println("\n(0) Voltar\nSelecione: ");
-            opcao = entrada.nextInt();
+            opcao = Leitor.lerInt();
 
             switch (opcao) {
                 case 0: break;
@@ -65,37 +62,33 @@ public class Main {
 
                     else { // Se a opcao digitada nao esta no intervalo aceito, repete a operacao
                         System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
-                        entrada.nextLine();
-                        entrada.nextLine();
+                        Leitor.esperarEnter();
                     }
             }
         }
     }
 
     private static void exibirServico(Servico servico) {
-        Scanner entrada = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
             limparTela();
             System.out.printf("\n--- %s ---\n",
                     servico.getNome());
-            System.out.printf("%s\n- Preço: %f\n- Custo: %f\n",
+            System.out.printf("%s\n- Preço: R$ %.2f\n- Custo: R$ %.2f\n",
                     servico.getDescricao(), servico.getPreco(), servico.getCusto());
             System.out.print("(1) Remover servico\n\n(0) Voltar\nSelecione:");
-            opcao = entrada.nextInt();
+            opcao = Leitor.lerInt();
             switch (opcao) {
                 case 0: break;
                 case 1: Mecanica.getServicos().remove(servico); break;
                 default:
                     System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
-                    entrada.nextLine();
-                    entrada.nextLine();
+                    Leitor.esperarEnter();
             }
         }
     }
 
     private static void servicos() {
-        Scanner entrada = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
             limparTela();
@@ -107,8 +100,7 @@ public class Main {
             }
             System.out.println("\n(0) Voltar\nSelecione: ");
 
-            opcao = entrada.nextInt();
-
+            opcao = Leitor.lerInt();
             switch (opcao) {
                 case 0: break;
                 case 1: limparTela(); Mecanica.cadastrarServico(); break;
@@ -117,15 +109,13 @@ public class Main {
                         exibirServico(Mecanica.getServicos().get(opcao-2));
                     else { // Se a opcao digitada nao esta no intervalo aceito, repete a operacao
                         System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
-                        entrada.nextLine();
-                        entrada.nextLine();
+                        Leitor.esperarEnter();
                     }
             }
         }
     }
 
     private static void exibirCliente(Cliente cliente) {
-        Scanner entrada = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
             limparTela();
@@ -135,21 +125,19 @@ public class Main {
                 System.out.printf("- Pedido atual: %s\n", cliente.getPedidoAtual().toString());
             }
             System.out.print("(1) Remover cliente\n\n(0) Voltar\nSelecione:");
-            opcao = entrada.nextInt();
 
+            opcao = Leitor.lerInt();
             switch (opcao) {
                 case 0: break;
                 case 1: Mecanica.getClientes().remove(cliente); break;
                 default:
                     System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
-                    entrada.nextLine();
-                    entrada.nextLine();
+                    Leitor.esperarEnter();
             }
         }
     }
 
     private static void clientes() {
-        Scanner entrada = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
             limparTela();
@@ -161,8 +149,7 @@ public class Main {
             }
             System.out.println("\n(0) Voltar\nSelecione: ");
 
-            opcao = entrada.nextInt();
-
+            opcao = Leitor.lerInt();
             switch (opcao) {
                 case 0: break;
                 case 1: limparTela(); Mecanica.cadastrarCliente(); break;
@@ -171,17 +158,17 @@ public class Main {
                         exibirCliente(Mecanica.getClientes().get(opcao-2));
                     else { // Se a opcao digitada nao esta no intervalo aceito, repete a operacao
                         System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
-                        entrada.nextLine();
-                        entrada.nextLine();
+                        Leitor.esperarEnter();
                     }
             }
         }
     }
 
     private static void novoPedido() {
-        Scanner entrada = new Scanner(System.in);
         int opcao = -1;
         limparTela();
+        
+        loopDeFora:
         while (opcao != 0) {
             System.out.print("\n--- Novo Pedido ---\n");
 
@@ -196,7 +183,7 @@ public class Main {
                 System.out.println("Nao ha clientes cadastrados ainda");
 
             System.out.printf("\n(0) Voltar\nSelecione o cliente: ");
-            opcao = entrada.nextInt();
+            opcao = Leitor.lerInt();
             switch (opcao) {
                 case 0: break;
                 default:
@@ -204,15 +191,14 @@ public class Main {
                         Mecanica.getClientes().get(opcao-1).fazerPedido();
                     else { // Se a opcao digitada nao esta no intervalo aceito, repete a operacao
                         System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
-                        entrada.nextLine();
-                        entrada.nextLine();
+                        Leitor.esperarEnter();
                     }
+                    break loopDeFora;
             }
         }
     }
 
     private static void atualizarCaixa() {
-        Scanner entrada = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
             limparTela();
@@ -223,31 +209,29 @@ public class Main {
             System.out.println("(3) Definir o valor absoluto do caixa");
             System.out.println("(0) Voltar");
 
-            opcao = entrada.nextInt();
+            opcao = Leitor.lerInt();
             switch (opcao) {
                 case 0: break;
                 case 1:
                     System.out.println("Digite o valor para adicionar ao caixa: ");
-                    Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() + entrada.nextFloat());
+                    Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() + Leitor.lerFloat());
                     break;
                 case 2:
                     System.out.println("Digite o valor para subtrair ao caixa: ");
-                    Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() - entrada.nextFloat());
+                    Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() - Leitor.lerFloat());
                     break;
                 case 3:
                     System.out.println("Digite o novo valor para o caixa: ");
-                    Mecanica.getFinancas().setCaixa(entrada.nextFloat());
+                    Mecanica.getFinancas().setCaixa(Leitor.lerFloat());
                     break;
                 default:
                     System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
-                    entrada.nextLine();
-                    entrada.nextLine();
+                    Leitor.esperarEnter();
             }
         }
     }
 
     private static void financas() {
-        Scanner entrada = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
             limparTela();
@@ -259,22 +243,20 @@ public class Main {
             System.out.print("(2) Atualizar caixa\n");
             System.out.print("\n(0) Voltar\n");
             System.out.print("Selecione: ");
-            opcao = entrada.nextInt();
+            opcao = Leitor.lerInt();
             switch (opcao) {
                 case 0: break;
                 case 1: financas.reset(); break;
                 case 2: atualizarCaixa(); break;
                 default:
                     System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
-                    entrada.nextLine();
-                    entrada.nextLine();
+                    Leitor.esperarEnter();
             }
         }
     }
 
     public static void Menu() {
         int opcao = -1;
-        Scanner entrada = new Scanner(System.in);
         while (opcao != 0) {
             limparTela();
             System.out.print("\n--- Mecânica ---\n");
@@ -286,8 +268,8 @@ public class Main {
             System.out.println("\n(0) Sair");
             System.out.println("Escolha a opcao desejada: ");
 
-            opcao = entrada.nextInt();
-            switch(opcao) {
+            opcao = Leitor.lerInt();
+            switch (opcao) {
                 case 0: break;
                 case 1: produtos(); break;
                 case 2: servicos(); break;
@@ -296,8 +278,7 @@ public class Main {
                 case 5: financas(); break;
                 default:
                     System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
-                    entrada.nextLine();
-                    entrada.nextLine();
+                    Leitor.esperarEnter();
             }
         }
     }
