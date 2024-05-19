@@ -167,7 +167,7 @@ public class Main {
     private static void novoPedido() {
         int opcao = -1;
         limparTela();
-        
+
         loopDeFora:
         while (opcao != 0) {
             System.out.print("\n--- Novo Pedido ---\n");
