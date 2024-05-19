@@ -98,7 +98,6 @@ public class Cliente {
         Leitor.esperarEnter();
         Mecanica.getFinancas().setFaturamento(Mecanica.getFinancas().getFaturamento() + pedidoAtual.getPrecoTotal());
         Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() + pedidoAtual.getPrecoTotal());
-        Mecanica.getFinancas().setCaixaEmProdutos(Mecanica.getFinancas().getCaixaEmProdutos() - pedidoAtual.getPrecoTotal());
         return true;
     }
 }

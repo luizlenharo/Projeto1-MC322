@@ -20,15 +20,21 @@ public class Pedido {
 
     // Para usar com produtos
     public void adicionarItem(Item item, int quantidade) {
+        float precoItens;
         if (itemQuantidade.get(item) != null)
             quantidade += itemQuantidade.get(item);
         itemQuantidade.put(item, quantidade);
-        precoTotal = precoTotal + quantidade*item.calculaPreco();
+        precoItens = quantidade*item.calculaPreco();
+        precoTotal = precoTotal + precoItens;
+        Mecanica.getFinancas().setCaixaEmProdutos(Mecanica.getFinancas().getCaixaEmProdutos() - precoItens);
     }
 
     // Para usar com servicos, que nao têm quantidade
     public void adicionarItem(Item item) {
         itemQuantidade.put(item, 0);
+        precoTotal = precoTotal + item.calculaPreco();
+        Mecanica.getFinancas().setGastos(Mecanica.getFinancas().getGastos() + item.getCusto());
+        Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() - item.getCusto());
     }
 
     public float getPrecoTotal() {
