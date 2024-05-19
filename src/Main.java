@@ -187,7 +187,7 @@ public class Main {
             switch (opcao) {
                 case 0: break;
                 default:
-                    if (opcao - 1 < Mecanica.getClientes().size())  
+                    if (opcao - 1 < Mecanica.getClientes().size())
                         Mecanica.getClientes().get(opcao-1).fazerPedido();
                     else { // Se a opcao digitada nao esta no intervalo aceito, repete a operacao
                         System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
@@ -237,7 +237,7 @@ public class Main {
             limparTela();
             System.out.print("\n--- Finanças ---\n");
             Financas financas = Mecanica.getFinancas();
-            System.out.printf("- faturamento: %f\n- gastos: %f\n- caixa: %f\n- caixa em produtos: %f\n",
+            System.out.printf("- Faturamento: R$%.2f\n- Gastos: R$%.2f\n- Caixa: R$%.2f\n- Caixa em produtos: R$%.2f\n",
                     financas.getFaturamento(), financas.getGastos(), financas.getCaixa(), financas.getCaixaEmProdutos());
             System.out.print("(1) Resetar gastos e faturamentos\n");
             System.out.print("(2) Atualizar caixa\n");

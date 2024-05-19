@@ -49,10 +49,10 @@ public class Cliente {
                 System.out.println("\nSelecione o produto:");
                 // Mostra todos os produtos disponíveis
                 for (i = 0; i < Mecanica.getProdutos().size(); i++) {
-                    System.out.println("(" + (i + 1) + ") " + Mecanica.getProdutos().get(i).getNome() + " - R$ " +
+                    System.out.printf("(%d) %s - R$%.2f\n", i+1, Mecanica.getProdutos().get(i).getNome(),
                             Mecanica.getProdutos().get(i).calculaPreco());
                 }
-                System.out.println("(0) Voltar");
+                System.out.println("\n(0) Voltar");
                 acao_p = Leitor.lerInt();
                 // Caso ele selecione algum pedido
                 if (acao_p != 0) {
@@ -73,10 +73,10 @@ public class Cliente {
                 System.out.println("Selecione o serviço: ");
                 // Mostra os serviços disponíveis
                 for (i = 0; i < Mecanica.getServicos().size(); i++) {
-                    System.out.println("(" + (i + 1) + ") " + Mecanica.getServicos().get(i).getNome() + " - R$ " +
+                    System.out.printf("(%d) %s - R$%.2f\n", i+1, Mecanica.getServicos().get(i).getNome(),
                             Mecanica.getServicos().get(i).calculaPreco());
                 }
-                System.out.println("(0) Voltar");
+                System.out.println("\n(0) Voltar");
                 Servico servico =  Mecanica.getServicos().get(Leitor.lerInt() - 1);
 
                 pedidoAtual.adicionarItem(servico);
