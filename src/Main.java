@@ -187,7 +187,7 @@ public class Main {
             switch (opcao) {
                 case 0: break;
                 default:
-                    if (opcao - 1 < Mecanica.getClientes().size())
+                    if (opcao - 1 < Mecanica.getClientes().size())  
                         Mecanica.getClientes().get(opcao-1).fazerPedido();
                     else { // Se a opcao digitada nao esta no intervalo aceito, repete a operacao
                         System.out.println("Opcao invalida. Pressione [ENTER] e digite novamente.");
