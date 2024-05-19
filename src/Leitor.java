@@ -3,11 +3,13 @@ import java.util.Scanner;
 public class Leitor {
     private static final Scanner entrada = new Scanner(System.in);
 
+    // Mantem exibicao no console ate que o usuario digite ENTER
     public static void esperarEnter() {
         entrada.nextLine(); // Reseta o buffer
         entrada.nextLine();
     }
 
+    // Le uma linha e retorna
     public static String lerLinha() {
         String retorno = entrada.nextLine(); // Reseta o buffer
         if (retorno.length() > 0)
@@ -26,6 +28,7 @@ public class Leitor {
         return retorno;
     }
 
+    // Le um int e retorna
     public static int lerInt() {
         int retorno;
         while (true) {
@@ -41,6 +44,7 @@ public class Leitor {
         return retorno;
     }
 
+    // Le um float e retorna
     public static float lerFloat() {
         float retorno;
         while (true) {
