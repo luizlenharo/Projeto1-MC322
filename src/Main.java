@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
+    static Salvamento salvamento = new Salvamento();
     private static void limparTela() {
         //System.out.print("\033[H\033[2J");
         //System.out.flush();
