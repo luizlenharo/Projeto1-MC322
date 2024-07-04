@@ -237,7 +237,7 @@ public class Main {
             limparTela();
             System.out.print("\n--- Finanças ---\n");
             Financas financas = Mecanica.getFinancas();
-            System.out.printf("- faturamento: %f\n- gastos: %f\n- caixa: %f\n- caixa em produtos: %f\n",
+            System.out.printf("- Faturamento: R$%.2f\n- Gastos: R$%.2f\n- Caixa: R$%.2f\n- Caixa em produtos: R$%.2f\n",
                     financas.getFaturamento(), financas.getGastos(), financas.getCaixa(), financas.getCaixaEmProdutos());
             System.out.print("(1) Resetar gastos e faturamentos\n");
             System.out.print("(2) Atualizar caixa\n");
@@ -284,6 +284,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Menu();
+        //Menu();
+        Interface menu = new Interface();
+        menu.Frame();
     }
 }

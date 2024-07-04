@@ -20,15 +20,21 @@ public class Pedido {
 
     // Para usar com produtos
     public void adicionarItem(Item item, int quantidade) {
+        float precoItens;
         if (itemQuantidade.get(item) != null)
             quantidade += itemQuantidade.get(item);
         itemQuantidade.put(item, quantidade);
-        precoTotal = precoTotal + quantidade*item.calculaPreco();
+        precoItens = quantidade*item.calculaPreco();
+        precoTotal = precoTotal + precoItens;
+        Mecanica.getFinancas().setCaixaEmProdutos(Mecanica.getFinancas().getCaixaEmProdutos() - precoItens);
     }
 
     // Para usar com servicos, que nao têm quantidade
     public void adicionarItem(Item item) {
         itemQuantidade.put(item, 0);
+        precoTotal = precoTotal + item.calculaPreco();
+        Mecanica.getFinancas().setGastos(Mecanica.getFinancas().getGastos() + item.getCusto());
+        Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() - item.getCusto());
     }
 
     public float getPrecoTotal() {
@@ -41,7 +47,6 @@ public class Pedido {
 
     @Override
     public String toString() {
-        float precoTotal = 0;
 
         // Enumera os servicos, separados por virgulas
         String retorno = "Servicos:\n\t";
@@ -51,7 +56,6 @@ public class Pedido {
                 haServicos = true;
                 retorno += i.getNome();
                 retorno += ", ";
-                precoTotal += ((Servico) i).getPreco();
             }
         }
         // Verifica se ha algum servico no pedido
@@ -68,7 +72,6 @@ public class Pedido {
                 haProdutos = true;
                 retorno += itemQuantidade.get(i).toString() + " " + i.getNome() + "(s)";
                 retorno += ", ";
-                precoTotal += ((Produto) i).getPreco() * itemQuantidade.get(i);
             }
         }
         // Verifica se ha produtos no pedido
@@ -78,7 +81,7 @@ public class Pedido {
             retorno += "Nao ha produtos no pedido";
 
         // Informa o subtotal do pedido na string
-        retorno += String.format("\nPreco total: R$ %.2f", precoTotal);
+        retorno += String.format("\nPreco total: R$%.2f", precoTotal);
 
         return retorno;
     }
