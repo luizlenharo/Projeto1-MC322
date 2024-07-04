@@ -4,6 +4,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class Interface {
@@ -145,6 +147,7 @@ public class Interface {
                 cardLayout.show(mainPanel, "TelaInicial");
             }
         });
+
         titlePanel.add(voltarButton, BorderLayout.LINE_START);
 
         telaProdutosPanel.add(titlePanel, BorderLayout.NORTH);
@@ -163,7 +166,7 @@ public class Interface {
         produto2.setPreco(produto2.calculaPreco());
         Mecanica.getProdutos().add(produto2);
 
-        DefaultTableModel tableModel = new DefaultTableModel(new Object[]{"Nome", "Preço", "Quantidade"}, 0);
+        NonEditableTableModel tableModel = new NonEditableTableModel(new Object[]{"Nome", "Preço", "Quantidade"}, 0);
 
         for (Produto produto : Mecanica.getProdutos()) {
             tableModel.addRow(new Object[]{produto.getNome(), produto.getPreco(), produto.getEstoque()});
@@ -173,6 +176,30 @@ public class Interface {
         JTable table = new JTable(tableModel);
 
         JScrollPane scrollPane = new JScrollPane(table);
+        table.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {  // Verifica se foi um clique duplo
+                    JTable target = (JTable) e.getSource();
+                    int row = target.getSelectedRow();  // Obtém a linha selecionada
+                    Produto produto = Mecanica.getProdutos().get(row);  // Obtém o produto da linha
+
+                    // Abre uma nova janela com os detalhes do produto
+                    JFrame detalheFrame = new JFrame("Detalhes do Produto");
+                    detalheFrame.setSize(300, 200);
+                    detalheFrame.setLayout(new GridLayout(3, 1));
+
+                    JLabel nomeLabel = new JLabel("Nome: " + produto.getNome());
+                    JLabel precoLabel = new JLabel("Preço: R$ " + produto.getPreco());
+                    JLabel quantidadeLabel = new JLabel("Quantidade: " + produto.getEstoque());
+
+                    detalheFrame.add(nomeLabel);
+                    detalheFrame.add(precoLabel);
+                    detalheFrame.add(quantidadeLabel);
+
+                    detalheFrame.setVisible(true);
+                }
+            }
+        });
 
         telaProdutosPanel.add(scrollPane, BorderLayout.CENTER);
 
