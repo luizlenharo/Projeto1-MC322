@@ -284,6 +284,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Menu();
+        //Menu();
+        Interface menu = new Interface();
+        menu.Frame();
     }
 }
