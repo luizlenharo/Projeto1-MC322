@@ -235,6 +235,25 @@ public class Interface {
                     reporEstoqueButton.setFont(new Font("Arial", Font.BOLD, 15));
                     reporEstoqueButton.setBackground(Color.DARK_GRAY);
                     reporEstoqueButton.setForeground(Color.white);
+                    reporEstoqueButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if (Mecanica.reporEstoque(produto, 1) == false) {
+                                JOptionPane.showMessageDialog(
+                                        reporEstoqueButton,
+                                        "Saldo insuficiente para repor estoque!\n" +
+                                                "Saldo nescessário: " + produto.getCusto() +
+                                                "\nSaldo Atual: " + Mecanica.getFinancas().getCaixa(),
+                                        "Alerta",
+                                        JOptionPane.WARNING_MESSAGE
+                                );
+                            } else {
+                                quantidadeLabel.setText("Quantidade: " + produto.getEstoque());
+                                tableModel.setValueAt(produto.getEstoque(), row, 2);
+                            }
+                        }
+
+                    });
 
                     // Botao Excluir Produto
                     JButton excluirProdutoButton = new JButton("Excluir Produto");
@@ -253,11 +272,11 @@ public class Interface {
                                     Mecanica.getProdutos().set(i, Mecanica.getProdutos().get(i + 1));
                                 }
                             }
+                            Mecanica.getProdutos().set(Mecanica.getProdutos().size() - 1, null);
 
                             detalheFrame.dispose();
                         }
                     });
-
 
                     buttonPanel.add(reporEstoqueButton);
                     buttonPanel.add(excluirProdutoButton);
@@ -379,7 +398,15 @@ public class Interface {
                         }
                         Produto newProduto = new Produto(custo, nome, tipoProduto);
                         newProduto.setPreco(newProduto.calculaPreco());
-                        Mecanica.getProdutos().add(newProduto);
+                        for (int i = 0; i < Mecanica.getProdutos().size(); i ++) {
+                            if (Mecanica.getProdutos().get(i) == null) {
+                                Mecanica.getProdutos().set(i, newProduto);
+                                break;
+                            } else if (i == Mecanica.getProdutos().size() - 1) {
+                                Mecanica.getProdutos().add(newProduto);
+                                break;
+                            }
+                        }
                         tableModel.addRow(new Object[]{newProduto.getNome(), newProduto.getPreco(),
                                 newProduto.getEstoque(), newProduto.getTipo()});
                         cadastroFrame.dispose();
@@ -399,4 +426,5 @@ public class Interface {
 
         return telaProdutosPanel;
     }
+    
 }
