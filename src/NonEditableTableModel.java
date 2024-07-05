@@ -7,6 +7,6 @@ public class NonEditableTableModel extends DefaultTableModel {
 
     @Override
     public boolean isCellEditable(int row, int column) {
-        return false;  // Retorna false para todas as células, tornando a tabela não editável
+        return false;
     }
 }
