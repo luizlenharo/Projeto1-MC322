@@ -17,6 +17,14 @@ public class Produto extends Item{
         this.estoque = 0;
     }
 
+    /* Construtor da classe Produto */
+    public Produto(float custo, String nome, TipoProduto tipo, float preco, int estoque) {
+        super(custo, nome);
+        this.tipo = tipo;
+        this.preco = preco;
+        this.estoque = estoque;
+    }
+
     /* Getters e Setters da classe */
     public int getEstoque() {
         return estoque;

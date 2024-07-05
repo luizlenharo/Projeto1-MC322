@@ -19,6 +19,7 @@ public class JsonParser {
         c.setPedidoAtual(p);
         try {
             objectMapper.writeValue(f, c);
+            System.out.printf(objectMapper.writeValueAsString(c));
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -31,6 +32,7 @@ public class JsonParser {
         try {
             Cliente c = objectMapper.readValue(f, Cliente.class);
             System.out.println(c);
+            System.out.println(c.getPedidoAtual().getProdutoQuantidade());
         } catch(Exception e) {
             e.printStackTrace();
         }

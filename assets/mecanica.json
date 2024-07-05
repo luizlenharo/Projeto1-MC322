@@ -9,8 +9,8 @@
       "preco" : 0.0
     } ],
     "precoTotal" : 1400.0,
-    "map" : {
-      "Nome: Pneu,Preço: 0.0,Custo: 100.0,Estoque: 0,Tipo: Mecanica" : 1
+    "produtoQuantidade" : {
+      "Nome: Pneu,Preço: 250.0,Custo: 100.0,Estoque: 16,Tipo: Mecanica" : 1
     }
   }
 }

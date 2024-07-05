@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.Hashtable;
 
 public class Pedido {
-    @JsonProperty("map")
+    @JsonProperty("produtoQuantidade")
     @JsonDeserialize(keyUsing = ProdutoDeserializer.class)
     private Hashtable<Produto, Integer> produtoQuantidade;
     private ArrayList<Servico> servicos;
