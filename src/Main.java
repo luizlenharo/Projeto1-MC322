@@ -285,9 +285,11 @@ public class Main {
     public static void main(String[] args) {
         JsonParser jp = new JsonParser();
         jp.carregarMecanicaDoJson();
-        Menu();
+
+        Interface menu = new Interface();
+        menu.Frame();
+
         jp.salvarMecanicaParaJson();
-//        Interface menu = new Interface();
-//        menu.Frame();
+//        Menu();
     }
 }
