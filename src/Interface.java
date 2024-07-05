@@ -197,7 +197,9 @@ public class Interface {
         NonEditableTableModel tableModel = new NonEditableTableModel(new Object[]{"Nome", "Preço", "Quantidade", "Tipo"}, 0);
 
         for (Produto produto : Mecanica.getProdutos()) {
-            tableModel.addRow(new Object[]{produto.getNome(), produto.getPreco(), produto.getEstoque(), produto.getTipo()});
+            if (produto != null){
+                tableModel.addRow(new Object[]{produto.getNome(), produto.getPreco(), produto.getEstoque(), produto.getTipo()});
+            }
         }
 
         // Criação da JTable com o modelo
@@ -488,16 +490,12 @@ public class Interface {
         contentPanel.setBorder(new EmptyBorder(10, 100, 70, 100));
         contentPanel.setBackground(new Color(158, 158, 158));
 
-        // Lista de clientes
-        Cliente newCliente = new Cliente("474.504.208-64", "Luiz Felipe");
-        Mecanica.getClientes().add(newCliente);
-        Cliente cliente2 = new Cliente("111.290.848-09", "João");
-        Mecanica.getClientes().add(cliente2);
-
         NonEditableTableModel tableModel = new NonEditableTableModel(new Object[]{"Nome", "CPF"}, 0);
 
         for (Cliente cliente : Mecanica.getClientes()) {
-            tableModel.addRow(new Object[]{cliente.getNome(), cliente.getCpf()});
+            if (cliente != null) {
+                tableModel.addRow(new Object[]{cliente.getNome(), cliente.getCpf()});
+            }
         }
 
         // Criação da JTable com o modelo
@@ -549,7 +547,7 @@ public class Interface {
                     JPanel buttonPanel = new JPanel();
                     buttonPanel.setLayout(new GridLayout(2,1, 0,15));
                     buttonPanel.setBackground(new Color(158, 158, 158));
-                    buttonPanel.setBorder(new EmptyBorder(70,120,120,120));
+                    buttonPanel.setBorder(new EmptyBorder(70,100,120,120));
                     // Botao Excluir Cliente
                     JButton excluirClienteButton = new JButton("Excluir Cliente");
                     excluirClienteButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -571,7 +569,6 @@ public class Interface {
                             detalheFrame.dispose();
                         }
                     });
-
                     buttonPanel.add(excluirClienteButton);
 
                     detalheFrame.add(titleClientePanel, BorderLayout.NORTH);
@@ -658,12 +655,11 @@ public class Interface {
                 buttonPanel.setBorder(new EmptyBorder(30,60,30,60));
                 cadastroFrame.add(buttonPanel, BorderLayout.PAGE_END);
                 confirmarButton.addActionListener(new ActionListener() {
-                    TipoProduto tipoProduto;
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         String nome = nameField.getText();
                         String cpf = cpfField.getText();
-                        Cliente newCliente = new Cliente(nome, cpf);
+                        Cliente newCliente = new Cliente(cpf, nome);
                         for (int i = 0; i < Mecanica.getClientes().size(); i ++) {
                             if (Mecanica.getClientes().get(i) == null) {
                                 Mecanica.getClientes().set(i, newCliente);
@@ -727,18 +723,12 @@ public class Interface {
         contentPanel.setBorder(new EmptyBorder(10, 100, 70, 100));
         contentPanel.setBackground(new Color(158, 158, 158));
 
-        // Lista de produtos
-        Produto newProduto = new Produto(200, "Pneu", TipoProduto.MECANICA);
-        newProduto.setPreco(newProduto.calculaPreco());
-        Mecanica.getProdutos().add(newProduto);
-        Produto produto2 = new Produto(1000, "Kit Vela", TipoProduto.MECANICA);
-        produto2.setPreco(produto2.calculaPreco());
-        Mecanica.getProdutos().add(produto2);
-
         NonEditableTableModel tableModel = new NonEditableTableModel(new Object[]{"Nome", "Preço", "Quantidade", "Tipo"}, 0);
 
         for (Produto produto : Mecanica.getProdutos()) {
-            tableModel.addRow(new Object[]{produto.getNome(), produto.getPreco(), produto.getEstoque(), produto.getTipo()});
+            if (produto != null) {
+                tableModel.addRow(new Object[]{produto.getNome(), produto.getPreco(), produto.getEstoque(), produto.getTipo()});
+            }
         }
 
         // Criação da JTable com o modelo
@@ -1030,18 +1020,12 @@ public class Interface {
         contentPanel.setBorder(new EmptyBorder(10, 100, 70, 100));
         contentPanel.setBackground(new Color(158, 158, 158));
 
-        // Lista de produtos
-        Produto newProduto = new Produto(200, "Pneu", TipoProduto.MECANICA);
-        newProduto.setPreco(newProduto.calculaPreco());
-        Mecanica.getProdutos().add(newProduto);
-        Produto produto2 = new Produto(1000, "Kit Vela", TipoProduto.MECANICA);
-        produto2.setPreco(produto2.calculaPreco());
-        Mecanica.getProdutos().add(produto2);
-
         NonEditableTableModel tableModel = new NonEditableTableModel(new Object[]{"Nome", "Preço", "Quantidade", "Tipo"}, 0);
 
         for (Produto produto : Mecanica.getProdutos()) {
-            tableModel.addRow(new Object[]{produto.getNome(), produto.getPreco(), produto.getEstoque(), produto.getTipo()});
+            if (produto != null){
+                tableModel.addRow(new Object[]{produto.getNome(), produto.getPreco(), produto.getEstoque(), produto.getTipo()});
+            }
         }
 
         // Criação da JTable com o modelo
@@ -1333,18 +1317,12 @@ public class Interface {
         contentPanel.setBorder(new EmptyBorder(10, 100, 70, 100));
         contentPanel.setBackground(new Color(158, 158, 158));
 
-        // Lista de produtos
-        Produto newProduto = new Produto(200, "Pneu", TipoProduto.MECANICA);
-        newProduto.setPreco(newProduto.calculaPreco());
-        Mecanica.getProdutos().add(newProduto);
-        Produto produto2 = new Produto(1000, "Kit Vela", TipoProduto.MECANICA);
-        produto2.setPreco(produto2.calculaPreco());
-        Mecanica.getProdutos().add(produto2);
-
         NonEditableTableModel tableModel = new NonEditableTableModel(new Object[]{"Nome", "Preço", "Quantidade", "Tipo"}, 0);
 
         for (Produto produto : Mecanica.getProdutos()) {
-            tableModel.addRow(new Object[]{produto.getNome(), produto.getPreco(), produto.getEstoque(), produto.getTipo()});
+            if (produto != null) {
+                tableModel.addRow(new Object[]{produto.getNome(), produto.getPreco(), produto.getEstoque(), produto.getTipo()});
+            }
         }
 
         // Criação da JTable com o modelo

@@ -6,4 +6,16 @@
     "precoTotal" : 0.0,
     "produtoQuantidade" : { }
   }
-} ]
+}, {
+  "cpf" : "474.504.208-64",
+  "nome" : "Luiz Felipe",
+  "pedido" : null
+}, {
+  "cpf" : "111.290.848-09",
+  "nome" : "João",
+  "pedido" : null
+}, {
+  "cpf" : "123.456.789-10",
+  "nome" : "José",
+  "pedido" : null
+}, null ]
