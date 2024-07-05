@@ -1,175 +1,31 @@
 [ {
-  "custo" : 200.0,
-  "nome" : "Pneu",
+  "custo" : 700.0,
+  "nome" : "Pneu ",
   "estoque" : 0,
-  "preco" : 300.0,
+  "preco" : 1050.0,
   "tipo" : "MECANICA"
 }, {
-  "custo" : 40.0,
-  "nome" : "Calota",
-  "estoque" : 0,
-  "preco" : 60.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 1000.0,
+  "custo" : 1500.0,
   "nome" : "Kit Vela",
   "estoque" : 0,
-  "preco" : 1500.0,
+  "preco" : 2250.0,
   "tipo" : "MECANICA"
 }, {
-  "custo" : 45.0,
-  "nome" : "Óleo",
-  "estoque" : 0,
-  "preco" : 67.5,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 100.0,
+  "custo" : 120.0,
   "nome" : "Tinta",
   "estoque" : 0,
-  "preco" : 150.0,
+  "preco" : 180.0,
   "tipo" : "ESTETICA"
-}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, {
-  "custo" : 200.0,
-  "nome" : "Pneu",
-  "estoque" : 0,
-  "preco" : 300.0,
-  "tipo" : "MECANICA"
 }, {
-  "custo" : 1000.0,
-  "nome" : "Kit Vela",
+  "custo" : 3600.0,
+  "nome" : "Roda",
   "estoque" : 0,
-  "preco" : 1500.0,
-  "tipo" : "MECANICA"
+  "preco" : 5400.0,
+  "tipo" : "ESTETICA"
 }, {
-  "custo" : 200.0,
-  "nome" : "Pneu",
+  "custo" : 2700.0,
+  "nome" : "Pistão",
   "estoque" : 0,
-  "preco" : 300.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 1000.0,
-  "nome" : "Kit Vela",
-  "estoque" : 0,
-  "preco" : 1500.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 200.0,
-  "nome" : "Pneu",
-  "estoque" : 0,
-  "preco" : 300.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 1000.0,
-  "nome" : "Kit Vela",
-  "estoque" : 0,
-  "preco" : 1500.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 200.0,
-  "nome" : "Pneu",
-  "estoque" : 0,
-  "preco" : 300.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 1000.0,
-  "nome" : "Kit Vela",
-  "estoque" : 0,
-  "preco" : 1500.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 200.0,
-  "nome" : "Pneu",
-  "estoque" : 0,
-  "preco" : 300.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 1000.0,
-  "nome" : "Kit Vela",
-  "estoque" : 0,
-  "preco" : 1500.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 200.0,
-  "nome" : "Pneu",
-  "estoque" : 0,
-  "preco" : 300.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 1000.0,
-  "nome" : "Kit Vela",
-  "estoque" : 0,
-  "preco" : 1500.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 200.0,
-  "nome" : "Pneu",
-  "estoque" : 0,
-  "preco" : 300.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 1000.0,
-  "nome" : "Kit Vela",
-  "estoque" : 0,
-  "preco" : 1500.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 200.0,
-  "nome" : "Pneu",
-  "estoque" : 0,
-  "preco" : 300.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 1000.0,
-  "nome" : "Kit Vela",
-  "estoque" : 0,
-  "preco" : 1500.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 200.0,
-  "nome" : "Pneu",
-  "estoque" : 0,
-  "preco" : 300.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 1000.0,
-  "nome" : "Kit Vela",
-  "estoque" : 0,
-  "preco" : 1500.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 200.0,
-  "nome" : "Pneu",
-  "estoque" : 0,
-  "preco" : 300.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 1000.0,
-  "nome" : "Kit Vela",
-  "estoque" : 0,
-  "preco" : 1500.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 200.0,
-  "nome" : "Pneu",
-  "estoque" : 0,
-  "preco" : 300.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 1000.0,
-  "nome" : "Kit Vela",
-  "estoque" : 0,
-  "preco" : 1500.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 200.0,
-  "nome" : "Pneu",
-  "estoque" : 0,
-  "preco" : 300.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 1000.0,
-  "nome" : "Kit Vela",
-  "estoque" : 0,
-  "preco" : 1500.0,
+  "preco" : 4050.0,
   "tipo" : "MECANICA"
 } ]

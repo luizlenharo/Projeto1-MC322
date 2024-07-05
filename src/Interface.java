@@ -426,15 +426,18 @@ public class Interface {
                         }
                         Produto newProduto = new Produto(custo, nome, tipoProduto);
                         newProduto.setPreco(newProduto.calculaPreco());
-                        for (int i = 0; i < Mecanica.getProdutos().size(); i ++) {
-                            if (Mecanica.getProdutos().get(i) == null) {
-                                Mecanica.getProdutos().set(i, newProduto);
-                                break;
-                            } else if (i == Mecanica.getProdutos().size() - 1) {
-                                Mecanica.getProdutos().add(newProduto);
-                                break;
+                        if (Mecanica.getProdutos().isEmpty())
+                            Mecanica.getProdutos().add(newProduto);
+                        else
+                            for (int i = 0; i < Mecanica.getProdutos().size(); i ++) {
+                                if (Mecanica.getProdutos().get(i) == null) {
+                                    Mecanica.getProdutos().set(i, newProduto);
+                                    break;
+                                } else if (i == Mecanica.getProdutos().size() - 1) {
+                                    Mecanica.getProdutos().add(newProduto);
+                                    break;
+                                }
                             }
-                        }
                         tableModel.addRow(new Object[]{newProduto.getNome(), newProduto.getPreco(),
                                 newProduto.getEstoque(), newProduto.getTipo()});
                         cadastroFrame.dispose();
@@ -660,17 +663,21 @@ public class Interface {
                         String nome = nameField.getText();
                         String cpf = cpfField.getText();
                         Cliente newCliente = new Cliente(cpf, nome);
-                        for (int i = 0; i < Mecanica.getClientes().size(); i ++) {
-                            if (Mecanica.getClientes().get(i) == null) {
-                                Mecanica.getClientes().set(i, newCliente);
-                                break;
-                            } else if (i == Mecanica.getClientes().size() - 1) {
-                                Mecanica.getClientes().add(newCliente);
-                                break;
+                        if (Mecanica.getClientes().isEmpty()) {
+                            Mecanica.getClientes().add(newCliente);
+                        } else {
+                            for (int i = 0; i < Mecanica.getClientes().size(); i ++) {
+                                if (Mecanica.getClientes().get(i) == null) {
+                                    Mecanica.getClientes().set(i, newCliente);
+                                    break;
+                                } else if (i == Mecanica.getClientes().size() - 1) {
+                                    Mecanica.getClientes().add(newCliente);
+                                    break;
+                                }
                             }
+                            tableModel.addRow(new Object[]{newCliente.getNome(), newCliente.getCpf()});
+                            cadastroFrame.dispose();
                         }
-                        tableModel.addRow(new Object[]{newCliente.getNome(), newCliente.getCpf()});
-                        cadastroFrame.dispose();
                     }
                 });
                 cadastroFrame.setVisible(true);
@@ -956,15 +963,18 @@ public class Interface {
                         }
                         Produto newProduto = new Produto(custo, nome, tipoProduto);
                         newProduto.setPreco(newProduto.calculaPreco());
-                        for (int i = 0; i < Mecanica.getProdutos().size(); i ++) {
-                            if (Mecanica.getProdutos().get(i) == null) {
-                                Mecanica.getProdutos().set(i, newProduto);
-                                break;
-                            } else if (i == Mecanica.getProdutos().size() - 1) {
-                                Mecanica.getProdutos().add(newProduto);
-                                break;
+                        if (Mecanica.getProdutos().isEmpty())
+                            Mecanica.getProdutos().add(newProduto);
+                        else
+                            for (int i = 0; i < Mecanica.getProdutos().size(); i ++) {
+                                if (Mecanica.getProdutos().get(i) == null) {
+                                    Mecanica.getProdutos().set(i, newProduto);
+                                    break;
+                                } else if (i == Mecanica.getProdutos().size() - 1) {
+                                    Mecanica.getProdutos().add(newProduto);
+                                    break;
+                                }
                             }
-                        }
                         tableModel.addRow(new Object[]{newProduto.getNome(), newProduto.getPreco(),
                                 newProduto.getEstoque(), newProduto.getTipo()});
                         cadastroFrame.dispose();
@@ -1253,15 +1263,18 @@ public class Interface {
                         }
                         Produto newProduto = new Produto(custo, nome, tipoProduto);
                         newProduto.setPreco(newProduto.calculaPreco());
-                        for (int i = 0; i < Mecanica.getProdutos().size(); i ++) {
-                            if (Mecanica.getProdutos().get(i) == null) {
-                                Mecanica.getProdutos().set(i, newProduto);
-                                break;
-                            } else if (i == Mecanica.getProdutos().size() - 1) {
-                                Mecanica.getProdutos().add(newProduto);
-                                break;
+                        if (Mecanica.getProdutos().isEmpty())
+                            Mecanica.getProdutos().add(newProduto);
+                        else
+                            for (int i = 0; i < Mecanica.getProdutos().size(); i ++) {
+                                if (Mecanica.getProdutos().get(i) == null) {
+                                    Mecanica.getProdutos().set(i, newProduto);
+                                    break;
+                                } else if (i == Mecanica.getProdutos().size() - 1) {
+                                    Mecanica.getProdutos().add(newProduto);
+                                    break;
+                                }
                             }
-                        }
                         tableModel.addRow(new Object[]{newProduto.getNome(), newProduto.getPreco(),
                                 newProduto.getEstoque(), newProduto.getTipo()});
                         cadastroFrame.dispose();
