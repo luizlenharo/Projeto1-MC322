@@ -696,14 +696,14 @@ public class Interface {
     }
 
     public JPanel TelaServiços() {
-        // Tela de Produtos
-        JPanel telaProdutosPanel = new JPanel(new BorderLayout());
+        // Tela de Serviços
+        JPanel telaServicosPanel = new JPanel(new BorderLayout());
 
         // Painel do titulo
         JPanel titlePanel = new JPanel();
         titlePanel.setLayout(new BorderLayout());
         // Titulo
-        JLabel titleLabel = new JLabel("Produtos", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("Serviços", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 42));
         titleLabel.setForeground(new Color(0,0,0));
         titleLabel.setBorder(new EmptyBorder(0,0,25,0));
@@ -730,11 +730,11 @@ public class Interface {
         contentPanel.setBorder(new EmptyBorder(10, 100, 70, 100));
         contentPanel.setBackground(new Color(158, 158, 158));
 
-        NonEditableTableModel tableModel = new NonEditableTableModel(new Object[]{"Nome", "Preço", "Quantidade", "Tipo"}, 0);
+        NonEditableTableModel tableModel = new NonEditableTableModel(new Object[]{"Nome", "Preço"}, 0);
 
-        for (Produto produto : Mecanica.getProdutos()) {
-            if (produto != null) {
-                tableModel.addRow(new Object[]{produto.getNome(), produto.getPreco(), produto.getEstoque(), produto.getTipo()});
+        for (Servico servico : Mecanica.getServicos()) {
+            if (servico != null) {
+                tableModel.addRow(new Object[]{servico.getNome(), servico.getPreco()});
             }
         }
 
@@ -752,101 +752,69 @@ public class Interface {
                 if (e.getClickCount() == 2) {
                     JTable target = (JTable) e.getSource();
                     int row = target.getSelectedRow();
-                    Produto produto = Mecanica.getProdutos().get(row);
+                    Servico servico = Mecanica.getServicos().get(row);
 
-                    // Janela com detalhes do produto
-                    JFrame detalheFrame = new JFrame("Detalhes do Produto");
+                    // Janela com detalhes do serviço
+                    JFrame detalheFrame = new JFrame("Detalhes do Serviço");
                     detalheFrame.setSize(650, 450);
                     detalheFrame.setLayout(new BorderLayout());
                     detalheFrame.setLocationRelativeTo(null);
 
                     // Titulo
-                    JPanel titleProdutoPanel = new JPanel();
-                    titleProdutoPanel.setLayout(new FlowLayout());
-                    titleProdutoPanel.setBackground(new Color(158,158,158));
-                    titleProdutoPanel.setBorder(new EmptyBorder(20,10,20,10));
-                    JLabel titleProdutoLable = new JLabel(produto.getNome());
-                    titleProdutoLable.setForeground(new Color(0,0,0));
-                    titleProdutoLable.setFont(new Font("Arial", Font.BOLD, 30));
-                    titleProdutoPanel.add(titleProdutoLable);
+                    JPanel titleServicoPanel = new JPanel();
+                    titleServicoPanel.setLayout(new FlowLayout());
+                    titleServicoPanel.setBackground(new Color(158,158,158));
+                    titleServicoPanel.setBorder(new EmptyBorder(20,10,20,10));
+                    JLabel titleServicoLable = new JLabel(servico.getNome());
+                    titleServicoLable.setForeground(new Color(0,0,0));
+                    titleServicoLable.setFont(new Font("Arial", Font.BOLD, 30));
+                    titleServicoPanel.add(titleServicoLable);
 
-                    // Detalhes do Produto
+                    // Detalhes do Serviço
                     JPanel contentPanel = new JPanel();
                     contentPanel.setLayout(new GridLayout(5,1));
                     contentPanel.setBackground(new Color(158, 158, 158));
                     contentPanel.setBorder(new EmptyBorder(10,90,10,10));
-                    JLabel custoLabel = new JLabel("Custo: " + produto.getCusto());
+                    JLabel custoLabel = new JLabel("Custo: " + servico.getCusto());
                     custoLabel.setFont(new Font("Arial", Font.BOLD, 17));
-                    JLabel precoLabel = new JLabel("Preço: R$ " + produto.getPreco());
+                    JLabel precoLabel = new JLabel("Preço: " + servico.getPreco());
                     precoLabel.setFont(new Font("Arial", Font.BOLD, 17));
-                    JLabel quantidadeLabel = new JLabel("Quantidade: " + produto.getEstoque());
-                    quantidadeLabel.setFont(new Font("Arial", Font.BOLD, 17));
-                    JLabel tipoLabel = new JLabel("Tipo: " + produto.getTipo());
-                    tipoLabel.setFont(new Font("Arial", Font.BOLD, 17));
+                    JLabel descricaoLabel = new JLabel("Descrição: " + servico.getDescricao());
+                    descricaoLabel.setFont(new Font("Arial", Font.BOLD, 17));
 
                     contentPanel.add(custoLabel);
                     contentPanel.add(precoLabel);
-                    contentPanel.add(quantidadeLabel);
-                    contentPanel.add(tipoLabel);
+                    contentPanel.add(descricaoLabel);
 
                     // Botões
                     JPanel buttonPanel = new JPanel();
                     buttonPanel.setLayout(new GridLayout(2,1, 0,15));
                     buttonPanel.setBackground(new Color(158, 158, 158));
-                    buttonPanel.setBorder(new EmptyBorder(70,120,120,120));
-                    // Botao Repor Estoque
-                    JButton reporEstoqueButton = new JButton("Repor Estoque");
-                    reporEstoqueButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                    reporEstoqueButton.setFont(new Font("Arial", Font.BOLD, 15));
-                    reporEstoqueButton.setBackground(Color.DARK_GRAY);
-                    reporEstoqueButton.setForeground(Color.white);
-                    reporEstoqueButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            if (Mecanica.reporEstoque(produto, 1) == false) {
-                                JOptionPane.showMessageDialog(
-                                        reporEstoqueButton,
-                                        "Saldo insuficiente para repor estoque!\n" +
-                                                "Saldo nescessário: " + produto.getCusto() +
-                                                "\nSaldo Atual: " + Mecanica.getFinancas().getCaixa(),
-                                        "Alerta",
-                                        JOptionPane.WARNING_MESSAGE
-                                );
-                            } else {
-                                quantidadeLabel.setText("Quantidade: " + produto.getEstoque());
-                                tableModel.setValueAt(produto.getEstoque(), row, 2);
-                            }
-                        }
-
-                    });
-
-                    // Botao Excluir Produto
-                    JButton excluirProdutoButton = new JButton("Excluir Produto");
-                    excluirProdutoButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                    excluirProdutoButton.setFont(new Font("Arial", Font.BOLD, 15));
-                    excluirProdutoButton.setBackground(new Color(178, 57, 57, 255));
-                    excluirProdutoButton.setForeground(Color.white);
-                    excluirProdutoButton.addActionListener(new ActionListener() {
+                    buttonPanel.setBorder(new EmptyBorder(70,85,120,120));
+                    // Botao Excluir Serviço
+                    JButton excluirServicoButton = new JButton("Excluir Serviço");
+                    excluirServicoButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                    excluirServicoButton.setFont(new Font("Arial", Font.BOLD, 15));
+                    excluirServicoButton.setBackground(new Color(178, 57, 57, 255));
+                    excluirServicoButton.setForeground(Color.white);
+                    excluirServicoButton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             tableModel.removeRow(target.getSelectedRow());
                             int indiceremovido = row;
-                            ArrayList<Produto> newProdutos = new ArrayList<Produto>();
-                            for (int i = 0; i < Mecanica.getProdutos().size() - 1; i++) {
+                            for (int i = 0; i < Mecanica.getServicos().size() - 1; i++) {
                                 if (i >= indiceremovido) {
-                                    Mecanica.getProdutos().set(i, Mecanica.getProdutos().get(i + 1));
+                                    Mecanica.getServicos().set(i, Mecanica.getServicos().get(i + 1));
                                 }
                             }
-                            Mecanica.getProdutos().set(Mecanica.getProdutos().size() - 1, null);
+                            Mecanica.getServicos().set(Mecanica.getServicos().size() - 1, null);
 
                             detalheFrame.dispose();
                         }
                     });
+                    buttonPanel.add(excluirServicoButton);
 
-                    buttonPanel.add(reporEstoqueButton);
-                    buttonPanel.add(excluirProdutoButton);
-
-                    detalheFrame.add(titleProdutoPanel, BorderLayout.NORTH);
+                    detalheFrame.add(titleServicoPanel, BorderLayout.NORTH);
                     detalheFrame.add(contentPanel, BorderLayout.LINE_START);
                     detalheFrame.add(buttonPanel, BorderLayout.CENTER);
 
@@ -855,8 +823,8 @@ public class Interface {
             }
         });
 
-        // Botão Cadastro produto
-        JButton cadastroButton = new JButton("Cadastrar Produto");
+        // Botão Cadastro Servico
+        JButton cadastroButton = new JButton("Cadastrar Serviço");
         cadastroButton.setBackground(Color.DARK_GRAY);
         cadastroButton.setFont(new Font("Arial", Font.BOLD, 18));
         cadastroButton.setForeground(Color.white);
@@ -864,16 +832,15 @@ public class Interface {
         cadastroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Produto newProduto;
                 // Frame de cadastro
-                JFrame cadastroFrame = new JFrame("Cadastro do Produto");
+                JFrame cadastroFrame = new JFrame("Cadastro de Serviço");
                 cadastroFrame.setSize(650, 450);
                 cadastroFrame.setLayout(new BorderLayout());
                 cadastroFrame.setLocationRelativeTo(null);
                 cadastroFrame.setResizable(false);
 
                 // Titulo Label
-                JLabel titleLabel = new JLabel("Cadastro de Produto", SwingConstants.CENTER);
+                JLabel titleLabel = new JLabel("Cadastro de Serviço", SwingConstants.CENTER);
                 titleLabel.setFont(new Font("Arial", Font.BOLD, 25));
                 titleLabel.setForeground(new Color(0,0,0));
                 titleLabel.setBorder(new EmptyBorder(10,10,20,10));
@@ -900,40 +867,37 @@ public class Interface {
                 namePanel.add(nameField);
                 formsPanel.add(namePanel);
 
-                // Label para custo de aquisição
-                JLabel custoLabel = new JLabel("Custo de aquisição: ", SwingConstants.CENTER);
+                // Label para Custo
+                JLabel custoLabel = new JLabel("Custo: ", SwingConstants.CENTER);
                 custoLabel.setFont(new Font("Arial", Font.BOLD, 20));
                 custoLabel.setForeground(new Color(0,0,0));
 
-                // Field para custo de aquisição
+                // Field para cpf
                 JTextField custoField = new JTextField();
                 custoField.setPreferredSize(new Dimension(100, 25));
 
-                // Panel para custo de aquisição
+                // Panel para cpf
                 JPanel custoPanel = new JPanel();
                 custoPanel.setLayout(new FlowLayout());
                 custoPanel.add(custoLabel);
                 custoPanel.add(custoField);
                 formsPanel.add(custoPanel);
 
-                // Label para tipo
-                JLabel tipoLabel = new JLabel("Tipo: ", SwingConstants.CENTER);
-                tipoLabel.setFont(new Font("Arial", Font.BOLD, 20));
-                tipoLabel.setForeground(new Color(0,0,0));
+                // Label para descrição
+                JLabel descricaoLabel = new JLabel("Descricao: ", SwingConstants.CENTER);
+                descricaoLabel.setFont(new Font("Arial", Font.BOLD, 20));
+                descricaoLabel.setForeground(new Color(0,0,0));
 
-                // CheckBox para tipo
-                JCheckBox mecanicaBox = new JCheckBox("Mecânica");
-                mecanicaBox.setFont(new Font("Arial",Font.BOLD, 15));
-                JCheckBox esteticaBox = new JCheckBox("Estética");
-                esteticaBox.setFont(new Font("Arial",Font.BOLD, 15));
+                // Field para decrição
+                JTextField descricaoField = new JTextField();
+                descricaoField.setPreferredSize(new Dimension(100, 25));
 
-                // Panel para tipo
-                JPanel tipoPanel = new JPanel();
-                tipoPanel.setLayout(new FlowLayout());
-                tipoPanel.add(tipoLabel);
-                tipoPanel.add(mecanicaBox);
-                tipoPanel.add(esteticaBox);
-                formsPanel.add(tipoPanel);
+                // Panel para decrição
+                JPanel descricaoPanel = new JPanel();
+                descricaoPanel.setLayout(new FlowLayout());
+                descricaoPanel.add(descricaoLabel);
+                descricaoPanel.add(descricaoField);
+                formsPanel.add(descricaoPanel);
 
                 cadastroFrame.add(formsPanel, BorderLayout.CENTER);
 
@@ -949,35 +913,28 @@ public class Interface {
                 buttonPanel.setBorder(new EmptyBorder(30,60,30,60));
                 cadastroFrame.add(buttonPanel, BorderLayout.PAGE_END);
                 confirmarButton.addActionListener(new ActionListener() {
-                    TipoProduto tipoProduto;
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         int custo = Integer.parseInt(custoField.getText());
                         String nome = nameField.getText();
-                        boolean respostaMecanicaBox = mecanicaBox.isSelected();
-                        boolean respostaEsteticaBox = esteticaBox.isSelected();
-                        if (respostaMecanicaBox == true) {
-                            tipoProduto = TipoProduto.MECANICA;
-                        } else if (respostaEsteticaBox == true) {
-                            tipoProduto = TipoProduto.ESTETICA;
-                        }
-                        Produto newProduto = new Produto(custo, nome, tipoProduto);
-                        newProduto.setPreco(newProduto.calculaPreco());
-                        if (Mecanica.getProdutos().isEmpty())
-                            Mecanica.getProdutos().add(newProduto);
-                        else
-                            for (int i = 0; i < Mecanica.getProdutos().size(); i ++) {
-                                if (Mecanica.getProdutos().get(i) == null) {
-                                    Mecanica.getProdutos().set(i, newProduto);
+                        String descricao = descricaoField.getText();
+                        Servico newServico = new Servico(custo, nome, descricao);
+                        if (Mecanica.getServicos().isEmpty()) {
+                            Mecanica.getServicos().add(newServico);
+                        } else {
+                            for (int i = 0; i < Mecanica.getServicos().size(); i ++) {
+                                if (Mecanica.getServicos().get(i) == null) {
+                                    Mecanica.getServicos().set(i, newServico);
                                     break;
-                                } else if (i == Mecanica.getProdutos().size() - 1) {
-                                    Mecanica.getProdutos().add(newProduto);
+                                } else if (i == Mecanica.getServicos().size() - 1) {
+                                    Mecanica.getServicos().add(newServico);
                                     break;
                                 }
                             }
-                        tableModel.addRow(new Object[]{newProduto.getNome(), newProduto.getPreco(),
-                                newProduto.getEstoque(), newProduto.getTipo()});
-                        cadastroFrame.dispose();
+                            newServico.setPreco(newServico.calculaPreco());
+                            tableModel.addRow(new Object[]{newServico.getNome(), newServico.getPreco()});
+                            cadastroFrame.dispose();
+                        }
                     }
                 });
                 cadastroFrame.setVisible(true);
@@ -988,11 +945,11 @@ public class Interface {
 
         titlePanel.add(cadastroButton, BorderLayout.LINE_END);
 
-        telaProdutosPanel.add(titlePanel, BorderLayout.NORTH);
+        telaServicosPanel.add(titlePanel, BorderLayout.NORTH);
 
-        telaProdutosPanel.add(contentPanel, BorderLayout.CENTER);
+        telaServicosPanel.add(contentPanel, BorderLayout.CENTER);
 
-        return telaProdutosPanel;
+        return telaServicosPanel;
     }
 
     public JPanel TelaFinanças() {

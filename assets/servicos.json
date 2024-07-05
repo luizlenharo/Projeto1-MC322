@@ -1,1 +1,11 @@
-[ ]
+[ {
+  "custo" : 15.0,
+  "nome" : "Lavagem",
+  "descricao" : "lavagem simples",
+  "preco" : 37.5
+}, {
+  "custo" : 50.0,
+  "nome" : "Troca de óleo",
+  "descricao" : "troca o oleo",
+  "preco" : 125.0
+}, null ]
