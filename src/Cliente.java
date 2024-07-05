@@ -57,8 +57,8 @@ public class Cliente {
                 System.out.println("\nSelecione o produto:");
                 // Mostra todos os produtos disponíveis
                 for (i = 0; i < Mecanica.getProdutos().size(); i++) {
-                    System.out.printf("(%d) %s - R$%.2f\n", i+1, Mecanica.getProdutos().get(i).getNome(),
-                            Mecanica.getProdutos().get(i).calculaPreco());
+                    System.out.printf("(%d) %s - R$%.2f\n\t%d Unidade(s) no estoque\n", i+1, Mecanica.getProdutos().get(i).getNome(),
+                            Mecanica.getProdutos().get(i).calculaPreco(), Mecanica.getProdutos().get(i).getEstoque());
                 }
                 System.out.println("\n(0) Voltar");
                 acao_p = Leitor.lerInt();

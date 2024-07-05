@@ -1,7 +1,7 @@
 [ {
   "custo" : 200.0,
   "nome" : "Pneu",
-  "estoque" : 0,
+  "estoque" : 1,
   "preco" : 300.0,
   "tipo" : "MECANICA"
 }, {
