@@ -1,0 +1,9 @@
+[ {
+  "cpf" : "43602354881",
+  "nome" : "Rafael",
+  "pedido" : {
+    "servicos" : [ ],
+    "precoTotal" : 0.0,
+    "produtoQuantidade" : { }
+  }
+} ]

@@ -7,7 +7,6 @@ public class Mecanica {
     private static ArrayList<Servico> servicos = new ArrayList<Servico>();
     private static Financas financas = new Financas();
 
-
     public static ArrayList<Cliente> getClientes() {
         return clientes;
     }

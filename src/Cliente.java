@@ -1,10 +1,18 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Cliente {
     private String cpf;
     private String nome;
+    @JsonProperty("pedido")
     private Pedido pedidoAtual=null;
+
+    public Cliente() {
+
+    }
 
     //Construtor do Cliente
     public Cliente(String cpf, String nome){
@@ -49,8 +57,8 @@ public class Cliente {
                 System.out.println("\nSelecione o produto:");
                 // Mostra todos os produtos disponíveis
                 for (i = 0; i < Mecanica.getProdutos().size(); i++) {
-                    System.out.printf("(%d) %s - R$%.2f\n", i+1, Mecanica.getProdutos().get(i).getNome(),
-                            Mecanica.getProdutos().get(i).calculaPreco());
+                    System.out.printf("(%d) %s - R$%.2f\n\t%d Unidade(s) no estoque\n", i+1, Mecanica.getProdutos().get(i).getNome(),
+                            Mecanica.getProdutos().get(i).calculaPreco(), Mecanica.getProdutos().get(i).getEstoque());
                 }
                 System.out.println("\n(0) Voltar");
                 acao_p = Leitor.lerInt();
@@ -101,5 +109,10 @@ public class Cliente {
         Mecanica.getFinancas().setFaturamento(Mecanica.getFinancas().getFaturamento() + pedidoAtual.getPrecoTotal());
         Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() + pedidoAtual.getPrecoTotal());
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: "+nome+", CPF:"+cpf+", Pedido atual:\n"+pedidoAtual;
     }
 }
