@@ -140,6 +140,9 @@ public class Interface {
         sairButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println(Mecanica.getProdutos());
+                JsonParser jp = new JsonParser();
+                jp.salvarMecanicaParaJson();
                 System.exit(0);
             }
         });
@@ -190,14 +193,6 @@ public class Interface {
         contentPanel.setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(10, 100, 70, 100));
         contentPanel.setBackground(new Color(158, 158, 158));
-
-        // Lista de produtos
-        Produto newProduto = new Produto(200, "Pneu", TipoProduto.MECANICA);
-        newProduto.setPreco(newProduto.calculaPreco());
-        Mecanica.getProdutos().add(newProduto);
-        Produto produto2 = new Produto(1000, "Kit Vela", TipoProduto.MECANICA);
-        produto2.setPreco(produto2.calculaPreco());
-        Mecanica.getProdutos().add(produto2);
 
         NonEditableTableModel tableModel = new NonEditableTableModel(new Object[]{"Nome", "Preço", "Quantidade", "Tipo"}, 0);
 
@@ -1577,15 +1572,19 @@ public class Interface {
                         }
                         Produto newProduto = new Produto(custo, nome, tipoProduto);
                         newProduto.setPreco(newProduto.calculaPreco());
-                        for (int i = 0; i < Mecanica.getProdutos().size(); i ++) {
-                            if (Mecanica.getProdutos().get(i) == null) {
-                                Mecanica.getProdutos().set(i, newProduto);
-                                break;
-                            } else if (i == Mecanica.getProdutos().size() - 1) {
-                                Mecanica.getProdutos().add(newProduto);
-                                break;
+
+                        if (Mecanica.getProdutos().isEmpty())
+                            Mecanica.getProdutos().add(newProduto);
+                        else
+                            for (int i = 0; i < Mecanica.getProdutos().size(); i ++) {
+                                if (Mecanica.getProdutos().get(i) == null) {
+                                    Mecanica.getProdutos().set(i, newProduto);
+                                    break;
+                                } else if (i == Mecanica.getProdutos().size() - 1) {
+                                    Mecanica.getProdutos().add(newProduto);
+                                    break;
+                                }
                             }
-                        }
                         tableModel.addRow(new Object[]{newProduto.getNome(), newProduto.getPreco(),
                                 newProduto.getEstoque(), newProduto.getTipo()});
                         cadastroFrame.dispose();

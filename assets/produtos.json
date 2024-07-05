@@ -1,13 +1,13 @@
 [ {
   "custo" : 200.0,
   "nome" : "Pneu",
-  "estoque" : 1,
+  "estoque" : 0,
   "preco" : 300.0,
   "tipo" : "MECANICA"
 }, {
-  "custo" : 300.0,
-  "nome" : "Retrovisor",
-  "estoque" : 1,
-  "preco" : 450.0,
+  "custo" : 40.0,
+  "nome" : "Calota",
+  "estoque" : 0,
+  "preco" : 60.0,
   "tipo" : "MECANICA"
 } ]
