@@ -9,6 +9,9 @@ public class Produto extends Item{
     private float preco;
     private TipoProduto tipo;
 
+    public Produto() {
+    }
+
     /* Construtor da classe Produto */
     public Produto(float custo, String nome, TipoProduto tipo){
         super(custo, nome);

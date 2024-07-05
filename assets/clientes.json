@@ -1,0 +1,14 @@
+[ {
+  "cpf" : "43602354881",
+  "nome" : "Rafael",
+  "pedido" : {
+    "servicos" : [ {
+      "custo" : 200.0,
+      "nome" : "Troca de oleo",
+      "descricao" : "Troca de oleo do carro",
+      "preco" : 500.0
+    } ],
+    "precoTotal" : 500.0,
+    "produtoQuantidade" : { }
+  }
+} ]

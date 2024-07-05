@@ -1,38 +1,44 @@
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class JsonParser {
+    private final ObjectMapper mapper;
 
-    public static void salvarMecanicaParaJson() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        File f = new File("assets/mecanica.json");
-        Servico s = new Servico(500, "Lavagem", "Lavagem do carro");
-        Produto produto = new Produto(100, "Pneu", TipoProduto.MECANICA);
-        Pedido p = new Pedido();
-        p.adicionarItem(s);
-        p.adicionarItem(produto, 1);
-        Cliente c = new Cliente("43602354882", "Rafael");
-        c.setPedidoAtual(p);
+    public JsonParser() {
+        mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+    }
+
+    public void salvarMecanicaParaJson() {
+        File arquivoClientes = new File("assets/clientes.json");
+        File arquivoProdutos = new File("assets/produtos.json");
+        File arquivoServicos = new File("assets/servicos.json");
+        File arquivoFinancas = new File("assets/financas.json");
         try {
-            objectMapper.writeValue(f, c);
-            System.out.printf(objectMapper.writeValueAsString(c));
+            mapper.writeValue(arquivoClientes, Mecanica.getClientes());
+            mapper.writeValue(arquivoProdutos, Mecanica.getProdutos());
+            mapper.writeValue(arquivoServicos, Mecanica.getServicos());
+            mapper.writeValue(arquivoFinancas, Mecanica.getFinancas());
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void carregarMecanicaDoJson() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        File f = new File("assets/mecanica.json");
-
+    public void carregarMecanicaDoJson() {
+        File arquivoClientes = new File("assets/clientes.json");
+        File arquivoProdutos = new File("assets/produtos.json");
+        File arquivoServicos = new File("assets/servicos.json");
+        File arquivoFinancas = new File("assets/financas.json");
         try {
-            Cliente c = objectMapper.readValue(f, Cliente.class);
-            System.out.println(c);
-            System.out.println(c.getPedidoAtual().getProdutoQuantidade());
+            Mecanica.setClientes(mapper.readValue(arquivoClientes, new TypeReference<ArrayList<Cliente>>(){}));
+            Mecanica.setProdutos(mapper.readValue(arquivoProdutos, new TypeReference<ArrayList<Produto>>(){}));
+            Mecanica.setServicos(mapper.readValue(arquivoServicos, new TypeReference<ArrayList<Servico>>(){}));
+            Mecanica.setFinancas(mapper.readValue(arquivoFinancas, Financas.class));
         } catch(Exception e) {
             e.printStackTrace();
         }
