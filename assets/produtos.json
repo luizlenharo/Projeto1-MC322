@@ -1,6 +1,6 @@
 [ {
   "custo" : 200.0,
-  "nome" : "Pneu",
+  "nome" : "Oleo de motor",
   "estoque" : 0,
   "preco" : 300.0,
   "tipo" : "MECANICA"
@@ -9,5 +9,5 @@
   "nome" : "Calota",
   "estoque" : 0,
   "preco" : 60.0,
-  "tipo" : "MECANICA"
+  "tipo" : "ESTETICA"
 } ]
