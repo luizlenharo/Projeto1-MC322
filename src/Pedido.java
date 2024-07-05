@@ -1,38 +1,58 @@
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
 
 public class Pedido {
-    private Hashtable<Item, Integer> itemQuantidade;
+    @JsonProperty("map")
+    @JsonDeserialize(keyUsing = ProdutoDeserializer.class)
+    private Hashtable<Produto, Integer> produtoQuantidade;
+    private ArrayList<Servico> servicos;
     private float precoTotal;
+
 
     public Pedido(){
         this.precoTotal = 0;
-        this.itemQuantidade = new Hashtable<Item, Integer>();
+        this.produtoQuantidade = new Hashtable<Produto, Integer>();
+        this.servicos = new ArrayList<Servico>();
     }
 
-    public Hashtable<Item, Integer> getItemQuantidade() {
-        return itemQuantidade;
+    public Hashtable<Produto, Integer> getProdutoQuantidade() {
+        return produtoQuantidade;
     }
 
-    public void setItemQuantidade(Hashtable<Item, Integer> itemQuantidade) {
-        this.itemQuantidade = itemQuantidade;
+    public void setProdutoQuantidade(Hashtable<Produto, Integer> produtoQuantidade) {
+        this.produtoQuantidade = produtoQuantidade;
+    }
+
+    public ArrayList<Servico> getServicos() {
+        return servicos;
+    }
+
+    public void setServicos(ArrayList<Servico> servicos) {
+        this.servicos = servicos;
     }
 
     // Para usar com produtos
-    public void adicionarItem(Item item, int quantidade) {
+    public void adicionarItem(Produto item, int quantidade) {
         float precoItens;
-        if (itemQuantidade.get(item) != null)
-            quantidade += itemQuantidade.get(item);
-        itemQuantidade.put(item, quantidade);
+        if (produtoQuantidade.get(item) != null)
+            quantidade += produtoQuantidade.get(item);
+        produtoQuantidade.put(item, quantidade);
         precoItens = quantidade*item.calculaPreco();
         precoTotal = precoTotal + precoItens;
         Mecanica.getFinancas().setCaixaEmProdutos(Mecanica.getFinancas().getCaixaEmProdutos() - precoItens);
     }
 
     // Para usar com servicos, que nao têm quantidade
-    public void adicionarItem(Item item) {
-        itemQuantidade.put(item, 0);
-        precoTotal = precoTotal + item.calculaPreco();
+    public void adicionarItem(Servico item) {
+        servicos.add(item);
+        precoTotal += item.calculaPreco();
         Mecanica.getFinancas().setGastos(Mecanica.getFinancas().getGastos() + item.getCusto());
         Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() - item.getCusto());
     }
@@ -50,32 +70,24 @@ public class Pedido {
 
         // Enumera os servicos, separados por virgulas
         String retorno = "Servicos:\n\t";
-        boolean haServicos = false;
-        for (Item i: Collections.list(itemQuantidade.keys()))  {
-            if (i.getClass() == Servico.class) {
-                haServicos = true;
-                retorno += i.getNome();
-                retorno += ", ";
-            }
+        for (Servico i: servicos)  {
+            retorno += i.getNome();
+            retorno += ", ";
         }
         // Verifica se ha algum servico no pedido
-        if (haServicos)
+        if (!servicos.isEmpty())
             retorno = retorno.substring(0, retorno.length()-2); // Retira a ultima virgula e seu espaco
         else
             retorno += "Nao ha servicos no pedido";
 
         // Enumera os produtos e suas quantidades, separados por virgulas
         retorno += "\nProdutos:\n\t";
-        boolean haProdutos = false;
-        for (Item i: Collections.list(itemQuantidade.keys()))  {
-            if (i.getClass() == Produto.class) {
-                haProdutos = true;
-                retorno += itemQuantidade.get(i).toString() + " " + i.getNome() + "(s)";
-                retorno += ", ";
-            }
+        for (Item i: Collections.list(produtoQuantidade.keys()))  {
+            retorno += produtoQuantidade.get(i).toString() + " " + i.getNome() + "(s)";
+            retorno += ", ";
         }
         // Verifica se ha produtos no pedido
-        if (haProdutos)
+        if (!produtoQuantidade.isEmpty())
             retorno = retorno.substring(0, retorno.length()-2); // Retira a ultima virgula e seu espaco
         else
             retorno += "Nao ha produtos no pedido";

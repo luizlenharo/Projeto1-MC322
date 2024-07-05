@@ -2,6 +2,9 @@ public class Item {
     private float custo;
     private String nome;
 
+    public Item() {
+    }
+
     /* Construtor da classe Item */
     public Item(float custo, String nome){
         this.custo = custo;

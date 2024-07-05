@@ -1,6 +1,15 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+//@JsonSerialize(using=ServicoSerializer.class)
 public class Servico extends Item{
     private String descricao;
     private float preco;
+
+    public Servico() {
+        super();
+    }
 
     /* Construtor da classe Servico */
     public Servico(float custo, String nome, String descricao){

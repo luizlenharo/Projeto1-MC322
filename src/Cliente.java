@@ -1,10 +1,18 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Cliente {
     private String cpf;
     private String nome;
+    @JsonProperty("pedido")
     private Pedido pedidoAtual=null;
+
+    public Cliente() {
+
+    }
 
     //Construtor do Cliente
     public Cliente(String cpf, String nome){
@@ -101,5 +109,10 @@ public class Cliente {
         Mecanica.getFinancas().setFaturamento(Mecanica.getFinancas().getFaturamento() + pedidoAtual.getPrecoTotal());
         Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() + pedidoAtual.getPrecoTotal());
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: "+nome+", CPF:"+cpf+", Pedido atual:\n"+pedidoAtual;
     }
 }

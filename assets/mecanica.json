@@ -1,0 +1,16 @@
+{
+  "cpf" : "43602354882",
+  "nome" : "Rafael",
+  "pedido" : {
+    "servicos" : [ {
+      "custo" : 500.0,
+      "nome" : "Lavagem",
+      "descricao" : "Lavagem do carro",
+      "preco" : 0.0
+    } ],
+    "precoTotal" : 1400.0,
+    "map" : {
+      "Nome: Pneu,Preço: 0.0,Custo: 100.0,Estoque: 0,Tipo: Mecanica" : 1
+    }
+  }
+}
