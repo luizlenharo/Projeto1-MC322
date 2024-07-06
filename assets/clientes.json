@@ -1,17 +1,11 @@
 [ {
-  "cpf" : "474.504.208-64",
+  "cpf" : "47450420864",
   "nome" : "Luiz",
   "pedido" : {
     "servicos" : [ ],
-    "precoTotal" : 0.0,
-    "produtoQuantidade" : { }
-  }
-}, {
-  "cpf" : "123.456.789-10",
-  "nome" : "José",
-  "pedido" : {
-    "servicos" : [ ],
-    "precoTotal" : 0.0,
-    "produtoQuantidade" : { }
+    "precoTotal" : 2100.0,
+    "produtoQuantidade" : {
+      "Nome: Pneu,Preço: 1050.0,Custo: 700.0,Estoque: 2,Tipo: Mecanica" : 2
+    }
   }
 }, null ]

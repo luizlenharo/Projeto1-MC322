@@ -798,6 +798,7 @@ public class Interface {
                                 quantidadeLabel.setText("Quantidade: " + produto.getEstoque());
                                 tableProdModel.setValueAt(produto.getEstoque(), row, 2);
                                 gastosLabel.setText("Gastos: R$ " + Mecanica.getFinancas().getGastos());
+                                caixaProdutoLabel.setText("Caixa em Produtos: R$ " + Mecanica.getFinancas().getCaixaEmProdutos());
                             }
                         }
                     });
@@ -1031,21 +1032,45 @@ public class Interface {
         totalPanel.setLayout(new BorderLayout());
         // Total Label
         JLabel totalLabel = new JLabel("Total: R$ " + novoPedido.getPrecoTotal(), SwingConstants.CENTER);
-        totalLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        totalLabel.setFont(new Font("Arial", Font.BOLD, 17));
         totalLabel.setForeground(Color.white);
-        totalLabel.setBorder(new EmptyBorder(25,60,25,60));
+        totalLabel.setBorder(new EmptyBorder(25,0,25,60));
         totalPanel.setBackground(new Color(21, 21, 21));
         totalPanel.add(totalLabel, BorderLayout.NORTH);
+        // Finalizar Button
+        JButton finalizarButton = new JButton("Finalizar compra");
+        finalizarButton.setBackground(new Color(6, 8, 106));
+        finalizarButton.setForeground(Color.white);
+        finalizarButton.setFont(new Font("Arial", Font.BOLD, 20));
+        finalizarButton.setBorder(new EmptyBorder(25,60,25,60));
+        finalizarButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        finalizarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                novoPedido.finalizarPedido();
+                faturamentoLabel.setText("Faturamento: R$ " + Mecanica.getFinancas().getFaturamento());
+                caixaLabel.setText("Caixa: R$ " + Mecanica.getFinancas().getCaixa());
+                caixaProdutoLabel.setText("Caixa em Produtos: R$ " + Mecanica.getFinancas().getCaixaEmProdutos());
+                cardLayout.show(mainPanel, "TelaInicial");
+            }
+        });
+
+        totalPanel.add(finalizarButton, BorderLayout.SOUTH);
         carrinhoPanel.add(totalPanel, BorderLayout.SOUTH);
         // Itens Panel
         JPanel itensPanel = new JPanel();
         itensPanel.setLayout(new BorderLayout());
         itensPanel.setBackground(new Color(158, 158, 158));
-        JPanel itensContentPanel = new JPanel();
-        itensContentPanel.setLayout(new GridLayout(0,1));
-        itensContentPanel.setBackground(new Color(158, 158, 158));
-        JScrollPane scrollItensPane = new JScrollPane(itensContentPanel);
+        NonEditableTableModel tableItensModel = new NonEditableTableModel(new Object[]{"Nome", "Quant.", "Preço"}, 0);
+        JTable tableItens = new JTable(tableItensModel);
+        tableItens.setFont(new Font("Arial", Font.TRUETYPE_FONT, 16));
+        tableItens.setPreferredScrollableViewportSize(new Dimension(250, 100));
+        JTableHeader tableItensHeader = tableItens.getTableHeader();
+        tableItensHeader.setFont(new Font("Arial", Font.BOLD, 18));
+
+        JScrollPane scrollItensPane = new JScrollPane(tableItens);
         scrollItensPane.setBackground(new Color(158, 158, 158));
+        scrollItensPane.getViewport().setBackground(new Color(158, 158, 158));
         itensPanel.add(scrollItensPane, BorderLayout.CENTER);
         carrinhoPanel.add(itensPanel, BorderLayout.CENTER);
 
@@ -1054,11 +1079,10 @@ public class Interface {
         prodServPanel.setLayout(new GridLayout(1,2));
         prodServPanel.setBackground(new Color(158,158,158));
         // Produtos List
-        NonEditableTableModel tableProdNPModel = new NonEditableTableModel(new Object[]{"Nome", "Preço", "Quant."}, 0);
-
+        NonEditableTableModel tableProdNPModel = new NonEditableTableModel(new Object[]{"Nome", "Quant.", "Preço"}, 0);
         for (Produto produto : Mecanica.getProdutos()) {
             if (produto != null){
-                tableProdNPModel.addRow(new Object[]{produto.getNome(), produto.getPreco(), produto.getEstoque()});
+                tableProdNPModel.addRow(new Object[]{produto.getNome(), produto.getEstoque(), produto.getPreco()});
             }
         }
         // Criação da JTable com o modelo
@@ -1075,9 +1099,25 @@ public class Interface {
                 if (e.getClickCount() == 2) {
                     JTable target = (JTable) e.getSource();
                     int row = target.getSelectedRow();
-                    Produto produto = Mecanica.getProdutos().get(row);
-                    novoPedido.adicionarItem(produto, 1);
-
+                    Produto produtoadd = Mecanica.getProdutos().get(row);
+                    novoPedido.adicionarItem(produtoadd, 1);
+                    if (tableItens.getRowCount() == 0) {
+                        tableItensModel.addRow(new Object[]{produtoadd.getNome(),
+                                novoPedido.getProdutoQuantidade().get(produtoadd), produtoadd.getPreco()});
+                    }
+                    for (int i = 0; i < tableItens.getRowCount(); i++) {
+                        if (produtoadd.getNome().equals(tableItens.getValueAt(i, 0))) {
+                            tableItensModel.setValueAt(novoPedido.getProdutoQuantidade().get(produtoadd), i, 1);
+                            tableItensModel.setValueAt(novoPedido.getProdutoQuantidade().get(produtoadd) * produtoadd.getPreco(),
+                                    i, 2);
+                            break;
+                        } else if (i == tableItens.getRowCount() - 1) {
+                            tableItensModel.addRow(new Object[]{produtoadd.getNome(),
+                                    novoPedido.getProdutoQuantidade().get(produtoadd), produtoadd.getPreco()});
+                            break;
+                        }
+                    }
+                    totalLabel.setText("Total: R$ " + novoPedido.getPrecoTotal());
                 }
             }
         });
@@ -1106,6 +1146,20 @@ public class Interface {
                     int row = target.getSelectedRow();
                     Servico servico = Mecanica.getServicos().get(row);
                     novoPedido.adicionarItem(servico);
+                    if (tableItens.getRowCount() == 0) {
+                        tableItensModel.addRow(new Object[]{servico.getNome(), "único", servico.getPreco()});
+                    }
+                    for (int i = 0; i < tableItens.getRowCount(); i++) {
+                        if (servico.getNome().equals(tableItens.getValueAt(i, 0))) {
+                            tableItensModel.setValueAt("único", i, 1);
+                            tableItensModel.setValueAt(servico.getPreco(), i, 2);
+                            break;
+                        } else if (i == tableItens.getRowCount() - 1) {
+                            tableItensModel.addRow(new Object[]{servico.getNome(), "único", servico.getPreco()});
+                            break;
+                        }
+                    }
+                    totalLabel.setText("Total: R$ " + novoPedido.getPrecoTotal());
                 }
             }
         });

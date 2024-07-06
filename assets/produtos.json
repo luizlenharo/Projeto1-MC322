@@ -1,37 +1,25 @@
 [ {
   "custo" : 700.0,
-  "nome" : "Pneu ",
+  "nome" : "Pneu",
   "estoque" : 2,
   "preco" : 1050.0,
   "tipo" : "MECANICA"
 }, {
-  "custo" : 1500.0,
-  "nome" : "Kit Vela",
-  "estoque" : 1,
-  "preco" : 2250.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 120.0,
+  "custo" : 100.0,
   "nome" : "Tinta",
-  "estoque" : 2,
-  "preco" : 180.0,
+  "estoque" : 1,
+  "preco" : 150.0,
   "tipo" : "ESTETICA"
+}, {
+  "custo" : 45.0,
+  "nome" : "Óleo",
+  "estoque" : 0,
+  "preco" : 67.5,
+  "tipo" : "MECANICA"
 }, {
   "custo" : 3600.0,
   "nome" : "Roda",
-  "estoque" : 1,
+  "estoque" : 0,
   "preco" : 5400.0,
-  "tipo" : "ESTETICA"
-}, {
-  "custo" : 2700.0,
-  "nome" : "Pistão",
-  "estoque" : 1,
-  "preco" : 4050.0,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 900.0,
-  "nome" : "Aerofólio",
-  "estoque" : 1,
-  "preco" : 1350.0,
   "tipo" : "ESTETICA"
 } ]

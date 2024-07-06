@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import java.lang.invoke.MutableCallSite;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -41,22 +42,28 @@ public class Pedido {
     // Para usar com produtos
     public void adicionarItem(Produto item, int quantidade) {
         float precoItens;
+        int quantidadeNova = quantidade;
         if (produtoQuantidade.get(item) != null)
-            quantidade += produtoQuantidade.get(item);
-        produtoQuantidade.put(item, quantidade);
+            quantidadeNova = produtoQuantidade.get(item) + quantidade;
+        produtoQuantidade.put(item, quantidadeNova);
         precoItens = quantidade*item.calculaPreco();
         precoTotal = precoTotal + precoItens;
-        Mecanica.getFinancas().setCaixaEmProdutos(Mecanica.getFinancas().getCaixaEmProdutos() - precoItens);
+        //Mecanica.getFinancas().setCaixaEmProdutos(Mecanica.getFinancas().getCaixaEmProdutos() - precoItens);
     }
 
     // Para usar com servicos, que nao têm quantidade
     public void adicionarItem(Servico item) {
         servicos.add(item);
         precoTotal += item.calculaPreco();
-        Mecanica.getFinancas().setGastos(Mecanica.getFinancas().getGastos() + item.getCusto());
-        Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() - item.getCusto());
+        //Mecanica.getFinancas().setGastos(Mecanica.getFinancas().getGastos() + item.getCusto());
+        //Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() - item.getCusto());
     }
 
+    public void finalizarPedido() {
+        Mecanica.getFinancas().setFaturamento(Mecanica.getFinancas().getFaturamento() + precoTotal);
+        Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() + precoTotal);
+        Mecanica.getFinancas().setCaixaEmProdutos(Mecanica.getFinancas().getCaixaEmProdutos() - precoTotal);
+    }
     public float getPrecoTotal() {
         return precoTotal;
     }

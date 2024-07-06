@@ -1,11 +1,11 @@
 [ {
-  "custo" : 15.0,
+  "custo" : 20.0,
   "nome" : "Lavagem",
   "descricao" : "lavagem simples",
-  "preco" : 37.5
+  "preco" : 50.0
 }, {
-  "custo" : 50.0,
+  "custo" : 45.0,
   "nome" : "Troca de óleo",
-  "descricao" : "troca o oleo",
-  "preco" : 125.0
-}, null ]
+  "descricao" : "troca oleo",
+  "preco" : 112.5
+} ]
