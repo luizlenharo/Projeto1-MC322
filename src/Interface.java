@@ -953,14 +953,14 @@ public class Interface {
     }
 
     public JPanel TelaFinanças() {
-        // Tela de Produtos
-        JPanel telaProdutosPanel = new JPanel(new BorderLayout());
+        // Tela de Finanças
+        JPanel telaFinancasPanel = new JPanel(new BorderLayout());
 
         // Painel do titulo
         JPanel titlePanel = new JPanel();
         titlePanel.setLayout(new BorderLayout());
         // Titulo
-        JLabel titleLabel = new JLabel("Produtos", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("Finanças", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 42));
         titleLabel.setForeground(new Color(0,0,0));
         titleLabel.setBorder(new EmptyBorder(0,0,25,0));
@@ -987,269 +987,129 @@ public class Interface {
         contentPanel.setBorder(new EmptyBorder(10, 100, 70, 100));
         contentPanel.setBackground(new Color(158, 158, 158));
 
-        NonEditableTableModel tableModel = new NonEditableTableModel(new Object[]{"Nome", "Preço", "Quantidade", "Tipo"}, 0);
+        // Painel de dados
+        JPanel dadosPanel = new JPanel();
+        dadosPanel.setLayout(new GridLayout(4,1,0,10));
+        dadosPanel.setBackground(new Color(158, 158, 158));
 
-        for (Produto produto : Mecanica.getProdutos()) {
-            if (produto != null){
-                tableModel.addRow(new Object[]{produto.getNome(), produto.getPreco(), produto.getEstoque(), produto.getTipo()});
-            }
-        }
+        JLabel faturamentoLabel = new JLabel("Faturamento: R$ " + Mecanica.getFinancas().getFaturamento());
+        faturamentoLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        JLabel gastosLabel = new JLabel("Gastos: R$ " + Mecanica.getFinancas().getGastos());
+        gastosLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        JLabel caixaLabel = new JLabel("Caixa: R$ " + Mecanica.getFinancas().getCaixa());
+        caixaLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        JLabel caixaProdutoLabel = new JLabel("Caixa em Produtos: R$ " + Mecanica.getFinancas().getCaixaEmProdutos());
+        caixaProdutoLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        // Criação da JTable com o modelo
-        JTable table = new JTable(tableModel);
-        table.setFont(new Font("Arial", Font.TRUETYPE_FONT, 16));
-        JTableHeader tableHeader = table.getTableHeader();
-        tableHeader.setFont(new Font("Arial", Font.BOLD, 18));
+        dadosPanel.add(faturamentoLabel);
+        dadosPanel.add(gastosLabel);
+        dadosPanel.add(caixaLabel);
+        dadosPanel.add(caixaProdutoLabel);
 
-        JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.getViewport().setBackground(new Color(158, 158, 158));
-        contentPanel.add(scrollPane);
-        table.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    JTable target = (JTable) e.getSource();
-                    int row = target.getSelectedRow();
-                    Produto produto = Mecanica.getProdutos().get(row);
-
-                    // Janela com detalhes do produto
-                    JFrame detalheFrame = new JFrame("Detalhes do Produto");
-                    detalheFrame.setSize(650, 450);
-                    detalheFrame.setLayout(new BorderLayout());
-                    detalheFrame.setLocationRelativeTo(null);
-
-                    // Titulo
-                    JPanel titleProdutoPanel = new JPanel();
-                    titleProdutoPanel.setLayout(new FlowLayout());
-                    titleProdutoPanel.setBackground(new Color(158,158,158));
-                    titleProdutoPanel.setBorder(new EmptyBorder(20,10,20,10));
-                    JLabel titleProdutoLable = new JLabel(produto.getNome());
-                    titleProdutoLable.setForeground(new Color(0,0,0));
-                    titleProdutoLable.setFont(new Font("Arial", Font.BOLD, 30));
-                    titleProdutoPanel.add(titleProdutoLable);
-
-                    // Detalhes do Produto
-                    JPanel contentPanel = new JPanel();
-                    contentPanel.setLayout(new GridLayout(5,1));
-                    contentPanel.setBackground(new Color(158, 158, 158));
-                    contentPanel.setBorder(new EmptyBorder(10,90,10,10));
-                    JLabel custoLabel = new JLabel("Custo: " + produto.getCusto());
-                    custoLabel.setFont(new Font("Arial", Font.BOLD, 17));
-                    JLabel precoLabel = new JLabel("Preço: R$ " + produto.getPreco());
-                    precoLabel.setFont(new Font("Arial", Font.BOLD, 17));
-                    JLabel quantidadeLabel = new JLabel("Quantidade: " + produto.getEstoque());
-                    quantidadeLabel.setFont(new Font("Arial", Font.BOLD, 17));
-                    JLabel tipoLabel = new JLabel("Tipo: " + produto.getTipo());
-                    tipoLabel.setFont(new Font("Arial", Font.BOLD, 17));
-
-                    contentPanel.add(custoLabel);
-                    contentPanel.add(precoLabel);
-                    contentPanel.add(quantidadeLabel);
-                    contentPanel.add(tipoLabel);
-
-                    // Botões
-                    JPanel buttonPanel = new JPanel();
-                    buttonPanel.setLayout(new GridLayout(2,1, 0,15));
-                    buttonPanel.setBackground(new Color(158, 158, 158));
-                    buttonPanel.setBorder(new EmptyBorder(70,120,120,120));
-                    // Botao Repor Estoque
-                    JButton reporEstoqueButton = new JButton("Repor Estoque");
-                    reporEstoqueButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                    reporEstoqueButton.setFont(new Font("Arial", Font.BOLD, 15));
-                    reporEstoqueButton.setBackground(Color.DARK_GRAY);
-                    reporEstoqueButton.setForeground(Color.white);
-                    reporEstoqueButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            if (Mecanica.reporEstoque(produto, 1) == false) {
-                                JOptionPane.showMessageDialog(
-                                        reporEstoqueButton,
-                                        "Saldo insuficiente para repor estoque!\n" +
-                                                "Saldo nescessário: " + produto.getCusto() +
-                                                "\nSaldo Atual: " + Mecanica.getFinancas().getCaixa(),
-                                        "Alerta",
-                                        JOptionPane.WARNING_MESSAGE
-                                );
-                            } else {
-                                quantidadeLabel.setText("Quantidade: " + produto.getEstoque());
-                                tableModel.setValueAt(produto.getEstoque(), row, 2);
-                            }
-                        }
-
-                    });
-
-                    // Botao Excluir Produto
-                    JButton excluirProdutoButton = new JButton("Excluir Produto");
-                    excluirProdutoButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                    excluirProdutoButton.setFont(new Font("Arial", Font.BOLD, 15));
-                    excluirProdutoButton.setBackground(new Color(178, 57, 57, 255));
-                    excluirProdutoButton.setForeground(Color.white);
-                    excluirProdutoButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tableModel.removeRow(target.getSelectedRow());
-                            int indiceremovido = row;
-                            ArrayList<Produto> newProdutos = new ArrayList<Produto>();
-                            for (int i = 0; i < Mecanica.getProdutos().size() - 1; i++) {
-                                if (i >= indiceremovido) {
-                                    Mecanica.getProdutos().set(i, Mecanica.getProdutos().get(i + 1));
-                                }
-                            }
-                            Mecanica.getProdutos().set(Mecanica.getProdutos().size() - 1, null);
-
-                            detalheFrame.dispose();
-                        }
-                    });
-
-                    buttonPanel.add(reporEstoqueButton);
-                    buttonPanel.add(excluirProdutoButton);
-
-                    detalheFrame.add(titleProdutoPanel, BorderLayout.NORTH);
-                    detalheFrame.add(contentPanel, BorderLayout.LINE_START);
-                    detalheFrame.add(buttonPanel, BorderLayout.CENTER);
-
-                    detalheFrame.setVisible(true);
-                }
-            }
-        });
-
-        // Botão Cadastro produto
-        JButton cadastroButton = new JButton("Cadastrar Produto");
-        cadastroButton.setBackground(Color.DARK_GRAY);
-        cadastroButton.setFont(new Font("Arial", Font.BOLD, 18));
-        cadastroButton.setForeground(Color.white);
-        cadastroButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        cadastroButton.addActionListener(new ActionListener() {
+        // Botões
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2,1, 0,15));
+        buttonPanel.setBackground(new Color(158, 158, 158));
+        buttonPanel.setBorder(new EmptyBorder(70,70,120,60));
+        // Botao Atualizar Caixa
+        JButton atualizarButton = new JButton("Atualizar Caixa");
+        atualizarButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        atualizarButton.setFont(new Font("Arial", Font.BOLD, 15));
+        atualizarButton.setBackground(Color.DARK_GRAY);
+        atualizarButton.setForeground(Color.white);
+        atualizarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Produto newProduto;
-                // Frame de cadastro
-                JFrame cadastroFrame = new JFrame("Cadastro do Produto");
-                cadastroFrame.setSize(650, 450);
-                cadastroFrame.setLayout(new BorderLayout());
-                cadastroFrame.setLocationRelativeTo(null);
-                cadastroFrame.setResizable(false);
+                // Frame de Atualização
+                JFrame atualizacaoFrame = new JFrame("Atualização do caixa");
+                atualizacaoFrame.setSize(650, 450);
+                atualizacaoFrame.setLayout(new BorderLayout());
+                atualizacaoFrame.setLocationRelativeTo(null);
+                atualizacaoFrame.setResizable(false);
 
                 // Titulo Label
-                JLabel titleLabel = new JLabel("Cadastro de Produto", SwingConstants.CENTER);
+                JLabel titleLabel = new JLabel("Atualização do Caixa", SwingConstants.CENTER);
                 titleLabel.setFont(new Font("Arial", Font.BOLD, 25));
                 titleLabel.setForeground(new Color(0,0,0));
                 titleLabel.setBorder(new EmptyBorder(10,10,20,10));
 
-                cadastroFrame.add(titleLabel, BorderLayout.NORTH);
+                atualizacaoFrame.add(titleLabel, BorderLayout.NORTH);
 
                 // Forms Panel
                 JPanel formsPanel = new JPanel();
-                formsPanel.setLayout(new GridLayout(3,1,10,10));
+                formsPanel.setLayout(new GridLayout(1,1,10,10));
 
-                // Label para nome
-                JLabel nameLabel = new JLabel("Nome: ", SwingConstants.CENTER);
-                nameLabel.setFont(new Font("Arial", Font.BOLD, 20));
-                nameLabel.setForeground(new Color(0,0,0));
+                // Label para quantia
+                JLabel quantiaLabel = new JLabel("Nova Quantia: ", SwingConstants.CENTER);
+                quantiaLabel.setFont(new Font("Arial", Font.BOLD, 20));
+                quantiaLabel.setForeground(new Color(0,0,0));
 
-                // Field para nome
-                JTextField nameField = new JTextField();
-                nameField.setPreferredSize(new Dimension(100, 25));
+                // Field para quantia
+                JTextField quantiaField = new JTextField();
+                quantiaField.setPreferredSize(new Dimension(100, 25));
 
-                // Panel para nome
-                JPanel namePanel = new JPanel();
-                namePanel.setLayout(new FlowLayout());
-                namePanel.add(nameLabel);
-                namePanel.add(nameField);
-                formsPanel.add(namePanel);
+                // Panel para quantia
+                JPanel quantiaPanel = new JPanel();
+                quantiaPanel.setLayout(new FlowLayout());
+                quantiaPanel.add(quantiaLabel);
+                quantiaPanel.add(quantiaField);
+                formsPanel.add(quantiaPanel);
 
-                // Label para custo de aquisição
-                JLabel custoLabel = new JLabel("Custo de aquisição: ", SwingConstants.CENTER);
-                custoLabel.setFont(new Font("Arial", Font.BOLD, 20));
-                custoLabel.setForeground(new Color(0,0,0));
-
-                // Field para custo de aquisição
-                JTextField custoField = new JTextField();
-                custoField.setPreferredSize(new Dimension(100, 25));
-
-                // Panel para custo de aquisição
-                JPanel custoPanel = new JPanel();
-                custoPanel.setLayout(new FlowLayout());
-                custoPanel.add(custoLabel);
-                custoPanel.add(custoField);
-                formsPanel.add(custoPanel);
-
-                // Label para tipo
-                JLabel tipoLabel = new JLabel("Tipo: ", SwingConstants.CENTER);
-                tipoLabel.setFont(new Font("Arial", Font.BOLD, 20));
-                tipoLabel.setForeground(new Color(0,0,0));
-
-                // CheckBox para tipo
-                JCheckBox mecanicaBox = new JCheckBox("Mecânica");
-                mecanicaBox.setFont(new Font("Arial",Font.BOLD, 15));
-                JCheckBox esteticaBox = new JCheckBox("Estética");
-                esteticaBox.setFont(new Font("Arial",Font.BOLD, 15));
-
-                // Panel para tipo
-                JPanel tipoPanel = new JPanel();
-                tipoPanel.setLayout(new FlowLayout());
-                tipoPanel.add(tipoLabel);
-                tipoPanel.add(mecanicaBox);
-                tipoPanel.add(esteticaBox);
-                formsPanel.add(tipoPanel);
-
-                cadastroFrame.add(formsPanel, BorderLayout.CENTER);
+                atualizacaoFrame.add(formsPanel, BorderLayout.CENTER);
 
                 // Botão Confirmar
                 JPanel buttonPanel = new JPanel();
                 buttonPanel.setLayout(new BorderLayout());
-                JButton confirmarButton = new JButton("Confirmar cadastro");
+                JButton confirmarButton = new JButton("Confirmar atualização");
                 confirmarButton.setFont(new Font("Arial", Font.BOLD, 20));
                 confirmarButton.setBackground(Color.DARK_GRAY);
                 confirmarButton.setForeground(Color.white);
                 confirmarButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 buttonPanel.add(confirmarButton, BorderLayout.CENTER);
                 buttonPanel.setBorder(new EmptyBorder(30,60,30,60));
-                cadastroFrame.add(buttonPanel, BorderLayout.PAGE_END);
+                atualizacaoFrame.add(buttonPanel, BorderLayout.PAGE_END);
                 confirmarButton.addActionListener(new ActionListener() {
-                    TipoProduto tipoProduto;
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        int custo = Integer.parseInt(custoField.getText());
-                        String nome = nameField.getText();
-                        boolean respostaMecanicaBox = mecanicaBox.isSelected();
-                        boolean respostaEsteticaBox = esteticaBox.isSelected();
-                        if (respostaMecanicaBox == true) {
-                            tipoProduto = TipoProduto.MECANICA;
-                        } else if (respostaEsteticaBox == true) {
-                            tipoProduto = TipoProduto.ESTETICA;
-                        }
-                        Produto newProduto = new Produto(custo, nome, tipoProduto);
-                        newProduto.setPreco(newProduto.calculaPreco());
-                        if (Mecanica.getProdutos().isEmpty())
-                            Mecanica.getProdutos().add(newProduto);
-                        else
-                            for (int i = 0; i < Mecanica.getProdutos().size(); i ++) {
-                                if (Mecanica.getProdutos().get(i) == null) {
-                                    Mecanica.getProdutos().set(i, newProduto);
-                                    break;
-                                } else if (i == Mecanica.getProdutos().size() - 1) {
-                                    Mecanica.getProdutos().add(newProduto);
-                                    break;
-                                }
-                            }
-                        tableModel.addRow(new Object[]{newProduto.getNome(), newProduto.getPreco(),
-                                newProduto.getEstoque(), newProduto.getTipo()});
-                        cadastroFrame.dispose();
+                        int quantia = Integer.parseInt(quantiaField.getText());
+                        Mecanica.getFinancas().setCaixa(quantia);
+                        caixaLabel.setText("Caixa: R$ " + Mecanica.getFinancas().getCaixa());
+                        atualizacaoFrame.dispose();
                     }
                 });
-                cadastroFrame.setVisible(true);
+                atualizacaoFrame.setVisible(true);
             }
         });
 
+        // Botao Resetar Gastos e Finaças
+        JButton resetButton = new JButton("Resetar Gastos e Finanças");
+        resetButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        resetButton.setFont(new Font("Arial", Font.BOLD, 15));
+        resetButton.setBackground(new Color(178, 57, 57, 255));
+        resetButton.setForeground(Color.white);
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Mecanica.getFinancas().setGastos(0);
+                Mecanica.getFinancas().setFaturamento(0);
+                gastosLabel.setText("Gastos: R$ " + Mecanica.getFinancas().getGastos());
+                faturamentoLabel.setText("Faturamento: R$ " + Mecanica.getFinancas().getFaturamento());
+            }
+        });
+
+        buttonPanel.add(atualizarButton);
+        buttonPanel.add(resetButton);
+
         titlePanel.add(voltarButton, BorderLayout.LINE_START);
 
-        titlePanel.add(cadastroButton, BorderLayout.LINE_END);
+        contentPanel.add(dadosPanel, BorderLayout.LINE_START);
+        contentPanel.add(buttonPanel, BorderLayout.CENTER);
 
-        telaProdutosPanel.add(titlePanel, BorderLayout.NORTH);
+        telaFinancasPanel.add(titlePanel, BorderLayout.NORTH);
+        telaFinancasPanel.add(contentPanel, BorderLayout.CENTER);
 
-        telaProdutosPanel.add(contentPanel, BorderLayout.CENTER);
 
-        return telaProdutosPanel;
+        return telaFinancasPanel;
     }
 
     public JPanel TelaNovoPedido() {

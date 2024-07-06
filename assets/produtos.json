@@ -1,13 +1,13 @@
 [ {
   "custo" : 700.0,
   "nome" : "Pneu ",
-  "estoque" : 0,
+  "estoque" : 2,
   "preco" : 1050.0,
   "tipo" : "MECANICA"
 }, {
   "custo" : 1500.0,
   "nome" : "Kit Vela",
-  "estoque" : 0,
+  "estoque" : 1,
   "preco" : 2250.0,
   "tipo" : "MECANICA"
 }, {
