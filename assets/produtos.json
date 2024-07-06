@@ -13,13 +13,13 @@
 }, {
   "custo" : 120.0,
   "nome" : "Tinta",
-  "estoque" : 0,
+  "estoque" : 2,
   "preco" : 180.0,
   "tipo" : "ESTETICA"
 }, {
   "custo" : 3600.0,
   "nome" : "Roda",
-  "estoque" : 0,
+  "estoque" : 1,
   "preco" : 5400.0,
   "tipo" : "ESTETICA"
 }, {
