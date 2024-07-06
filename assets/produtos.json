@@ -28,4 +28,10 @@
   "estoque" : 1,
   "preco" : 4050.0,
   "tipo" : "MECANICA"
+}, {
+  "custo" : 900.0,
+  "nome" : "Aerofólio",
+  "estoque" : 1,
+  "preco" : 1350.0,
+  "tipo" : "ESTETICA"
 } ]

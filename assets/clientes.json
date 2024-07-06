@@ -1,9 +1,17 @@
 [ {
   "cpf" : "474.504.208-64",
   "nome" : "Luiz",
-  "pedido" : null
+  "pedido" : {
+    "servicos" : [ ],
+    "precoTotal" : 0.0,
+    "produtoQuantidade" : { }
+  }
 }, {
   "cpf" : "123.456.789-10",
   "nome" : "José",
-  "pedido" : null
+  "pedido" : {
+    "servicos" : [ ],
+    "precoTotal" : 0.0,
+    "produtoQuantidade" : { }
+  }
 }, null ]
