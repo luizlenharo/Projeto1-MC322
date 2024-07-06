@@ -281,7 +281,6 @@ public class Interface {
                                 tableModel.setValueAt(produto.getEstoque(), row, 2);
                             }
                         }
-
                     });
 
                     // Botao Excluir Produto
@@ -301,7 +300,6 @@ public class Interface {
                                 }
                             }
                             Mecanica.getProdutos().set(Mecanica.getProdutos().size() - 1, null);
-
                             detalheFrame.dispose();
                         }
                     });
@@ -1082,7 +1080,7 @@ public class Interface {
         });
 
         // Botao Resetar Gastos e Finaças
-        JButton resetButton = new JButton("Resetar Gastos e Finanças");
+        JButton resetButton = new JButton("Resetar Gastos e Faturamento");
         resetButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         resetButton.setFont(new Font("Arial", Font.BOLD, 15));
         resetButton.setBackground(new Color(178, 57, 57, 255));

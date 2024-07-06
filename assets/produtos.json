@@ -25,7 +25,7 @@
 }, {
   "custo" : 2700.0,
   "nome" : "Pistão",
-  "estoque" : 0,
+  "estoque" : 1,
   "preco" : 4050.0,
   "tipo" : "MECANICA"
 } ]
