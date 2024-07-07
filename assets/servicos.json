@@ -1,1 +1,21 @@
-[ ]
+[ {
+  "custo" : 100.0,
+  "nome" : "Limpeza Completa",
+  "descricao" : "Limpa por dentro e por fora",
+  "preco" : 250.0
+}, {
+  "custo" : 50.0,
+  "nome" : "Limpeza Interna",
+  "descricao" : "Limpa o interior do carro",
+  "preco" : 125.0
+}, {
+  "custo" : 20.0,
+  "nome" : "Troca de óleo",
+  "descricao" : "Troca o óleo",
+  "preco" : 50.0
+}, {
+  "custo" : 10.0,
+  "nome" : "Troca de pneu",
+  "descricao" : "Troca um pneu",
+  "preco" : 25.0
+}, null ]
