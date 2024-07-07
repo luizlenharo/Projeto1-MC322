@@ -1,1 +1,16 @@
-[ ]
+[ {
+  "custo" : 30.0,
+  "nome" : "Lavagen",
+  "descricao" : "Lavagem simples",
+  "preco" : 75.0
+}, {
+  "custo" : 20.0,
+  "nome" : "Troca de óleo",
+  "descricao" : "troca de óleo",
+  "preco" : 50.0
+}, {
+  "custo" : 50.0,
+  "nome" : "Balanceamento",
+  "descricao" : "Balanceia o carro",
+  "preco" : 125.0
+} ]
