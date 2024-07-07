@@ -1,0 +1,5 @@
+1. Baixe os arquivos .jar da pasta arquivos_json do repositório e os coloque em uma pasta
+2. Abra o IntelliJ, vá em File e clique em Project Structure
+3. No menu à esquerda, clique em Modules e, em seguida, clique em Dependencies
+4. Clique no botão de +, clique em JARs e selecione os três arquivos .jar na pasta onde foram salvos
+5. Dê Ok e aplique as alterações
