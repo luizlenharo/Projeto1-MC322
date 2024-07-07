@@ -1,13 +1,6 @@
 {
-<<<<<<< HEAD
-  "gastos" : 5675.0,
+  "gastos" : 5005.0,
   "faturamento" : 0.0,
-  "caixa" : 1325.0,
-  "caixaEmProdutos" : 8512.5
-=======
-  "gastos" : 4760.0,
-  "faturamento" : 0.0,
-  "caixa" : 96240.0,
-  "caixaEmProdutos" : 7140.0
->>>>>>> 318040103f79306de8a92b0948f387102c0e2a23
+  "caixa" : 4995.0,
+  "caixaEmProdutos" : 7507.5
 }

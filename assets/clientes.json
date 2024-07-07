@@ -1,24 +1,17 @@
 [ {
-  "cpf" : "16696688758",
-  "nome" : "Felipe",
-  "pedido" : null
-<<<<<<< HEAD
-=======
-}, {
-  "cpf" : "16696688758",
-  "nome" : "Felipe",
+  "cpf" : "47450420864",
+  "nome" : "Luiz ",
   "pedido" : null
 }, {
-  "cpf" : "58546321378",
-  "nome" : "Luiz",
+  "cpf" : "47450420864",
+  "nome" : "Luiz ",
   "pedido" : null
 }, {
-  "cpf" : "46358971423",
-  "nome" : "Theo",
+  "cpf" : "12345678910",
+  "nome" : "Jose ",
   "pedido" : null
 }, {
-  "cpf" : "01579865319",
-  "nome" : "Rafael",
+  "cpf" : "11129084809",
+  "nome" : "Joao",
   "pedido" : null
->>>>>>> 318040103f79306de8a92b0948f387102c0e2a23
 } ]

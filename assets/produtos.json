@@ -1,63 +1,31 @@
 [ {
-  "custo" : 200.0,
-  "nome" : "Pneu",
-<<<<<<< HEAD
+  "custo" : 400.0,
+  "nome" : "Pneu ",
   "estoque" : 4,
-  "preco" : 300.0,
-=======
-  "estoque" : 8,
-  "preco" : 300.0,
+  "preco" : 600.0,
   "tipo" : "MECANICA"
 }, {
-  "custo" : 75.0,
-  "nome" : "Retrovisor",
-  "estoque" : 15,
-  "preco" : 112.5,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 10.0,
+  "custo" : 7.0,
   "nome" : "Aromatizador",
-  "estoque" : 13,
-  "preco" : 15.0,
+  "estoque" : 10,
+  "preco" : 10.5,
   "tipo" : "ESTETICA"
 }, {
   "custo" : 100.0,
-  "nome" : "Óleo",
-  "estoque" : 15,
+  "nome" : "Tinta",
+  "estoque" : 2,
   "preco" : 150.0,
->>>>>>> 318040103f79306de8a92b0948f387102c0e2a23
-  "tipo" : "MECANICA"
+  "tipo" : "ESTETICA"
 }, {
   "custo" : 45.0,
-  "nome" : "Tinta",
-  "estoque" : 9,
+  "nome" : "Óleo",
+  "estoque" : 3,
   "preco" : 67.5,
-  "tipo" : "ESTETICA"
-<<<<<<< HEAD
+  "tipo" : "MECANICA"
 }, {
   "custo" : 1000.0,
   "nome" : "Kit Vela ",
-  "estoque" : 1,
+  "estoque" : 3,
   "preco" : 1500.0,
   "tipo" : "MECANICA"
-}, {
-  "custo" : 45.0,
-  "nome" : "Óleo",
-  "estoque" : 1,
-  "preco" : 67.5,
-  "tipo" : "MECANICA"
-}, {
-  "custo" : 80.0,
-  "nome" : "Tinta",
-  "estoque" : 2,
-  "preco" : 120.0,
-  "tipo" : "ESTETICA"
-}, {
-  "custo" : 70.0,
-  "nome" : "Kit Limpeza",
-  "estoque" : 1,
-  "preco" : 105.0,
-  "tipo" : "ESTETICA"
-=======
->>>>>>> 318040103f79306de8a92b0948f387102c0e2a23
 } ]

@@ -1,21 +1,4 @@
 [ {
-<<<<<<< HEAD
-  "custo" : 30.0,
-  "nome" : "Lavagen",
-  "descricao" : "Lavagem simples",
-  "preco" : 75.0
-}, {
-  "custo" : 20.0,
-  "nome" : "Troca de óleo",
-  "descricao" : "troca de óleo",
-  "preco" : 50.0
-}, {
-  "custo" : 50.0,
-  "nome" : "Balanceamento",
-  "descricao" : "Balanceia o carro",
-  "preco" : 125.0
-} ]
-=======
   "custo" : 100.0,
   "nome" : "Limpeza Completa",
   "descricao" : "Limpa por dentro e por fora",
@@ -36,4 +19,3 @@
   "descricao" : "Troca um pneu",
   "preco" : 25.0
 }, null ]
->>>>>>> 318040103f79306de8a92b0948f387102c0e2a23
