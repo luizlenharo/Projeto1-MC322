@@ -65,17 +65,4 @@ public class Produto extends Item{
         out += "Nome: " + getNome() + ",Preço: " + getPreco() + ",Custo: " + getCusto() + ",Estoque: " + getEstoque() + ",Tipo: " + getTipo();
         return out;
     }
-
-    /*
-    public String toJson() throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.writeValueAsString(this);
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-            throw new Exception("Erro ao converter produto para Json");
-        }
-    }
-    */
 }
