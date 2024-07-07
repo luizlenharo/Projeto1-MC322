@@ -632,15 +632,15 @@ public class Interface {
                 // Botão Confirmar
                 JPanel buttonPanel = new JPanel();
                 buttonPanel.setLayout(new BorderLayout());
-                JButton confirmarButton = new JButton("Confirmar cadastro");
-                confirmarButton.setFont(new Font("Arial", Font.BOLD, 20));
-                confirmarButton.setBackground(Color.DARK_GRAY);
-                confirmarButton.setForeground(Color.white);
-                confirmarButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                buttonPanel.add(confirmarButton, BorderLayout.CENTER);
+                JButton confirmarCadCliButton = new JButton("Confirmar cadastro");
+                confirmarCadCliButton.setFont(new Font("Arial", Font.BOLD, 20));
+                confirmarCadCliButton.setBackground(Color.DARK_GRAY);
+                confirmarCadCliButton.setForeground(Color.white);
+                confirmarCadCliButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                buttonPanel.add(confirmarCadCliButton, BorderLayout.CENTER);
                 buttonPanel.setBorder(new EmptyBorder(30,60,30,60));
                 cadastroFrame.add(buttonPanel, BorderLayout.PAGE_END);
-                confirmarButton.addActionListener(new ActionListener() {
+                confirmarCadCliButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         String nome = nameField.getText();
@@ -998,18 +998,11 @@ public class Interface {
         voltarNovoPedButton.setFont(new Font("Arial", Font.BOLD, 15));
         voltarNovoPedButton.setForeground(Color.white);
         voltarNovoPedButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        voltarNovoPedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(mainPanel, "TelaInicial");
-            }
-        });
 
         // Painel de conteudo
         JPanel contentNovoPedPanel = new JPanel(cardLayout);
         contentNovoPedPanel.setBorder(new EmptyBorder(10, 100, 0, 0));
         contentNovoPedPanel.setBackground(new Color(158, 158, 158));
-
 
         // Carrinho Panel
         JPanel carrinhoPanel = new JPanel();
@@ -1044,16 +1037,6 @@ public class Interface {
         finalizarButton.setFont(new Font("Arial", Font.BOLD, 20));
         finalizarButton.setBorder(new EmptyBorder(25,60,25,60));
         finalizarButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        finalizarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                novoPedido.finalizarPedido();
-                faturamentoLabel.setText("Faturamento: R$ " + Mecanica.getFinancas().getFaturamento());
-                caixaLabel.setText("Caixa: R$ " + Mecanica.getFinancas().getCaixa());
-                caixaProdutoLabel.setText("Caixa em Produtos: R$ " + Mecanica.getFinancas().getCaixaEmProdutos());
-                cardLayout.show(mainPanel, "TelaInicial");
-            }
-        });
 
         totalPanel.add(finalizarButton, BorderLayout.SOUTH);
         carrinhoPanel.add(totalPanel, BorderLayout.SOUTH);
@@ -1100,24 +1083,40 @@ public class Interface {
                     JTable target = (JTable) e.getSource();
                     int row = target.getSelectedRow();
                     Produto produtoadd = Mecanica.getProdutos().get(row);
-                    novoPedido.adicionarItem(produtoadd, 1);
-                    if (tableItens.getRowCount() == 0) {
-                        tableItensModel.addRow(new Object[]{produtoadd.getNome(),
-                                novoPedido.getProdutoQuantidade().get(produtoadd), produtoadd.getPreco()});
-                    }
-                    for (int i = 0; i < tableItens.getRowCount(); i++) {
-                        if (produtoadd.getNome().equals(tableItens.getValueAt(i, 0))) {
-                            tableItensModel.setValueAt(novoPedido.getProdutoQuantidade().get(produtoadd), i, 1);
-                            tableItensModel.setValueAt(novoPedido.getProdutoQuantidade().get(produtoadd) * produtoadd.getPreco(),
-                                    i, 2);
-                            break;
-                        } else if (i == tableItens.getRowCount() - 1) {
+                    if (novoPedido.adicionarItem(produtoadd, 1) == true) {
+                        System.out.print(produtoadd);
+                        if (tableItens.getRowCount() == 0) {
                             tableItensModel.addRow(new Object[]{produtoadd.getNome(),
                                     novoPedido.getProdutoQuantidade().get(produtoadd), produtoadd.getPreco()});
-                            break;
                         }
+                        for (int i = 0; i < tableItens.getRowCount(); i++) {
+                            if (produtoadd.getNome().equals(tableItens.getValueAt(i, 0))) {
+                                tableItensModel.setValueAt(novoPedido.getProdutoQuantidade().get(produtoadd), i, 1);
+                                tableItensModel.setValueAt(novoPedido.getProdutoQuantidade().get(produtoadd) * produtoadd.getPreco(),
+                                        i, 2);
+                                break;
+                            } else if (i == tableItens.getRowCount() - 1) {
+                                tableItensModel.addRow(new Object[]{produtoadd.getNome(),
+                                        novoPedido.getProdutoQuantidade().get(produtoadd), produtoadd.getPreco()});
+                                break;
+                            }
+                        }
+                        totalLabel.setText("Total: R$ " + novoPedido.getPrecoTotal());
+                        tableProdNPModel.setValueAt(produtoadd.getEstoque(), row, 1);
+                        int intLinhaProdList;
+                        for (int i = 0; i < tableProd.getRowCount(); i++) {
+                            if (produtoadd.getNome().equals(tableProd.getValueAt(i, 0))) {
+                                tableProdModel.setValueAt(produtoadd.getEstoque(), i, 2);
+                            }
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(
+                                tableProdNP,
+                                "Produto sem estoque\n",
+                                "Alerta",
+                                JOptionPane.WARNING_MESSAGE
+                        );
                     }
-                    totalLabel.setText("Total: R$ " + novoPedido.getPrecoTotal());
                 }
             }
         });
@@ -1196,6 +1195,28 @@ public class Interface {
                     clienteNovoPed.setPedidoAtual(novoPedido);
                     cardLayout.show(contentNovoPedPanel, "prodServPanel");
                 }
+            }
+        });
+
+        finalizarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                novoPedido.finalizarPedido();
+                faturamentoLabel.setText("Faturamento: R$ " + Mecanica.getFinancas().getFaturamento());
+                caixaLabel.setText("Caixa: R$ " + Mecanica.getFinancas().getCaixa());
+                caixaProdutoLabel.setText("Caixa em Produtos: R$ " + Mecanica.getFinancas().getCaixaEmProdutos());
+                cardLayout.show(mainPanel, "TelaInicial");
+                cardLayout.show(contentNovoPedPanel, "clienteNovoPedPanel");
+                tableItensModel.setRowCount(0);
+
+            }
+        });
+
+        voltarNovoPedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(mainPanel, "TelaInicial");
+                cardLayout.show(contentNovoPedPanel, "clienteNovoPedPanel");
             }
         });
 

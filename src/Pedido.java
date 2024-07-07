@@ -40,29 +40,34 @@ public class Pedido {
     }
 
     // Para usar com produtos
-    public void adicionarItem(Produto item, int quantidade) {
-        float precoItens;
-        int quantidadeNova = quantidade;
-        if (produtoQuantidade.get(item) != null)
-            quantidadeNova = produtoQuantidade.get(item) + quantidade;
-        produtoQuantidade.put(item, quantidadeNova);
-        precoItens = quantidade*item.calculaPreco();
-        precoTotal = precoTotal + precoItens;
-        //Mecanica.getFinancas().setCaixaEmProdutos(Mecanica.getFinancas().getCaixaEmProdutos() - precoItens);
+    public boolean adicionarItem(Produto item, int quantidade) {
+        if (item.getEstoque() != 0) {
+            float precoItens;
+            int quantidadeNova = quantidade;
+            if (produtoQuantidade.get(item) != null)
+                quantidadeNova = produtoQuantidade.get(item) + quantidade;
+            produtoQuantidade.put(item, quantidadeNova);
+            precoItens = quantidade*item.calculaPreco();
+            precoTotal = precoTotal + precoItens;
+            item.setEstoque(item.getEstoque() - quantidade);
+            return true;
+        }
+        return false;
     }
 
     // Para usar com servicos, que nao têm quantidade
     public void adicionarItem(Servico item) {
         servicos.add(item);
         precoTotal += item.calculaPreco();
-        //Mecanica.getFinancas().setGastos(Mecanica.getFinancas().getGastos() + item.getCusto());
-        //Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() - item.getCusto());
     }
 
     public void finalizarPedido() {
         Mecanica.getFinancas().setFaturamento(Mecanica.getFinancas().getFaturamento() + precoTotal);
         Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() + precoTotal);
         Mecanica.getFinancas().setCaixaEmProdutos(Mecanica.getFinancas().getCaixaEmProdutos() - precoTotal);
+        setPrecoTotal(0);
+        produtoQuantidade.clear();
+        servicos.clear();
     }
     public float getPrecoTotal() {
         return precoTotal;

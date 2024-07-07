@@ -3,9 +3,11 @@
   "nome" : "Luiz",
   "pedido" : {
     "servicos" : [ ],
-    "precoTotal" : 2100.0,
-    "produtoQuantidade" : {
-      "Nome: Pneu,Preço: 1050.0,Custo: 700.0,Estoque: 2,Tipo: Mecanica" : 2
-    }
+    "precoTotal" : 0.0,
+    "produtoQuantidade" : { }
   }
-}, null ]
+}, {
+  "cpf" : "12345678910",
+  "nome" : "José",
+  "pedido" : null
+} ]
