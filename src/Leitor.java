@@ -1,4 +1,4 @@
-import java.util.Scanner;
+/*import java.util.Scanner;
 
 public class Leitor {
     private static final Scanner entrada = new Scanner(System.in);
@@ -60,3 +60,4 @@ public class Leitor {
         return retorno;
     }
 }
+*/

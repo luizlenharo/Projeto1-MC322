@@ -39,6 +39,14 @@ public class Pedido {
         this.servicos = servicos;
     }
 
+    public float getPrecoTotal() {
+        return precoTotal;
+    }
+
+    public void setPrecoTotal(float precoTotal) {
+        this.precoTotal = precoTotal;
+    }
+
     // Para usar com produtos
     public boolean adicionarItem(Produto item, int quantidade) {
         if (item.getEstoque() != 0) {
@@ -60,7 +68,6 @@ public class Pedido {
         servicos.add(item);
         precoTotal += item.calculaPreco();
     }
-
     public void finalizarPedido() {
         Mecanica.getFinancas().setFaturamento(Mecanica.getFinancas().getFaturamento() + precoTotal);
         Mecanica.getFinancas().setCaixa(Mecanica.getFinancas().getCaixa() + precoTotal);
@@ -68,13 +75,6 @@ public class Pedido {
         setPrecoTotal(0);
         produtoQuantidade.clear();
         servicos.clear();
-    }
-    public float getPrecoTotal() {
-        return precoTotal;
-    }
-
-    public void setPrecoTotal(float precoTotal) {
-        this.precoTotal = precoTotal;
     }
 
     @Override

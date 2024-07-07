@@ -1,4 +1,4 @@
-public class    Financas {
+public class Financas {
     private float gastos;
     private float faturamento;
     private float caixa;
