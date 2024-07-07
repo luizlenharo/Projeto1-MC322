@@ -1,11 +1,1 @@
-[ {
-  "cpf" : "47450420864",
-  "nome" : "Luiz",
-  "pedido" : {
-    "servicos" : [ ],
-    "precoTotal" : 2100.0,
-    "produtoQuantidade" : {
-      "Nome: Pneu,Preço: 1050.0,Custo: 700.0,Estoque: 2,Tipo: Mecanica" : 2
-    }
-  }
-}, null ]
+[ ]

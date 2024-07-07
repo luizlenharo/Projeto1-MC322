@@ -785,7 +785,7 @@ public class Interface {
                     reporEstoqueButton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            if (Mecanica.reporEstoque(produto, 1) == false) {
+                            if (!Mecanica.reporEstoque(produto, 1)) {
                                 JOptionPane.showMessageDialog(
                                         reporEstoqueButton,
                                         "Saldo insuficiente para repor estoque!\n" +
